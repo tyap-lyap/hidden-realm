@@ -4,6 +4,7 @@
   "package": "ru.pinkgoosik.hiddenrealm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "PlayerMixin",
     "PlayerEntityMixin"
   ],
   "client": [

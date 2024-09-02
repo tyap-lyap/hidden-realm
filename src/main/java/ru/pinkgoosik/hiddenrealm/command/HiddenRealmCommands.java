@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.command.ServerCommandSource;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
 
 import java.util.Set;
 
@@ -19,7 +20,8 @@ public class HiddenRealmCommands {
 	private static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register(literal("hiddenrealm").then(literal("teleport").then(literal("silent_bazaar").executes(context -> {
 			var player = context.getSource().getPlayer();
-			if(player != null) {
+			if(player instanceof PlayerExtension ex && !player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+				ex.savePrevPosition();
 				player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), 0.5, 80, 0.5, Set.of(), -45, 0);
 			}
 			return 1;

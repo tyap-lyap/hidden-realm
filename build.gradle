@@ -6,6 +6,11 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+	maven { url "https://maven.nucleoid.xyz" }
+	maven {
+		url "https://api.modrinth.com/maven"
+		content { includeGroup "maven.modrinth" }
+	}
 }
 
 dependencies {
@@ -14,6 +19,9 @@ dependencies {
 
 	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api}"
+
+	modLocalRuntime "maven.modrinth:huge-structure-blocks:1.1.2"
+	modLocalRuntime "maven.modrinth:yeetus-experimentus:b7C4gGUr"
 }
 
 base {

@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.pinkgoosik.hiddenrealm.command.HiddenRealmCommands;
+import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
 import ru.pinkgoosik.hiddenrealm.command.TestGiveLunarCoinCommand;
 
 public class HiddenRealmMod implements ModInitializer {
@@ -19,6 +20,7 @@ public class HiddenRealmMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		HiddenRealmCommands.init();
+		HiddenRealmEvents.init();
 		TestGiveLunarCoinCommand.init();
 	}
 
