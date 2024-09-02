@@ -10,7 +10,8 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [ "ru.pinkgoosik.hiddenrealm.HiddenRealmMod" ]
+    "main": [ "ru.pinkgoosik.hiddenrealm.HiddenRealmMod" ],
+    "client": ["ru.pinkgoosik.hiddenrealm.client.HiddenRealmClient"]
   },
   "mixins": [ "hiddenrealm.mixins.json" ],
   "depends": {
