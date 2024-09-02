@@ -1,6 +1,7 @@
 package ru.pinkgoosik.hiddenrealm.event;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.structure.StructurePlacementData;
@@ -9,11 +10,17 @@ import net.minecraft.text.Text;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.math.BlockPos;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
 
 public class HiddenRealmEvents {
 
 	public static void init() {
+
+		ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
+			((LunarCoinExtension)newPlayer).setLunarCoin(((LunarCoinExtension)oldPlayer).getLunarCoin());
+			});
+
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			var bazaar = server.getWorld(HiddenRealmMod.SILENT_BAZAAR);
 
