@@ -1,0 +1,23 @@
+{
+  "type": "hiddenrealm:silent_bazaar",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+        {
+          "height": 64,
+          "block": "minecraft:air"
+        },
+        {
+          "height": 1,
+          "block": "minecraft:bedrock"
+        }
+      ],
+      "biome": "hiddenrealm:silent_cave"
+    },
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "hiddenrealm:silent_cave"
+    }
+  }
+}

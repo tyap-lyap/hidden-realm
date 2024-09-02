@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "hiddenrealm",
+  "version": "${version}",
+  "name": "Hidden Realm",
+  "description": "This mod adds new hidden realm",
+  "authors": [ "PinkGoosik", "Theone_ss", "Spusik" ],
+  "license": "ARR",
+  "icon": "assets/hiddenrealm/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [ "ru.pinkgoosik.hiddenrealm.HiddenRealmMod" ]
+  },
+  "mixins": [ "hiddenrealm.mixins.json" ],
+  "depends": {
+    "fabricloader": "*",
+    "fabric-api": "*",
+    "minecraft": ">=1.21",
+    "java": ">=21"
+  }
+}
