@@ -75,6 +75,7 @@ public class HiddenRealmEvents {
 				if (player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
 					player.setHealth(20F);
 					ex.teleportToPrevPosition();
+					player.setPortalCooldown(400);
 					player.sendMessage(Text.translatable("message.hiddenrealm.silent_bazaar_death"));
 					return false;
 				}

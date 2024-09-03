@@ -20,7 +20,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 	private static void drawLunarCoins(DrawContext drawContext, RenderTickCounter renderTickCounter) {
 		Color color = new Color(24, 193, 245);
 		if (!MinecraftClient.getInstance().options.hudHidden) {
-			drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.of(((LunarCoinExtension)MinecraftClient.getInstance().player).getLunarCoin() + " TEST COCK"), 30 / 2, 80, color.getRGB(), true);
+			drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.of(((LunarCoinExtension)MinecraftClient.getInstance().player).getLunarCoin() + " Lunar Coins"), 30 / 2, 80, color.getRGB(), true);
 		}
 	}
 }
