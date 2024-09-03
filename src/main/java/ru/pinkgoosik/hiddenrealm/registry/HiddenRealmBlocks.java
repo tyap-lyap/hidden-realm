@@ -1,6 +1,5 @@
 package ru.pinkgoosik.hiddenrealm.registry;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -10,16 +9,20 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.block.BazaarPortalBlock;
+import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static net.minecraft.block.AbstractBlock.Settings.copy;
 
 @SuppressWarnings("unused")
 public class HiddenRealmBlocks {
 	public static final Map<Identifier, BlockItem> ITEMS = new LinkedHashMap<>();
 	public static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
-	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(AbstractBlock.Settings.copy(Blocks.BEDROCK)));
+	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.BEDROCK)));
+	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.STONE).nonOpaque().notSolid()));
 
 	public static void init() {
 		ITEMS.forEach((id, item) -> Registry.register(Registries.ITEM, id, item));

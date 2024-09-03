@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.pinkgoosik.hiddenrealm.command.HiddenRealmCommands;
 import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmItems;
 
 public class HiddenRealmMod implements ModInitializer {
@@ -24,6 +26,8 @@ public class HiddenRealmMod implements ModInitializer {
 		HiddenRealmEvents.init();
 		HiddenRealmItems.init();
 		HiddenRealmBlocks.init();
+		HiddenRealmEntities.init();
+		HiddenRealmBlockEntities.init();
 	}
 
 	public static Identifier id(String path) {
