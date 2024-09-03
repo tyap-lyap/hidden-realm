@@ -3,10 +3,11 @@ package ru.pinkgoosik.hiddenrealm.event;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
@@ -59,6 +60,13 @@ public class HiddenRealmEvents {
 			}
 
 			return true;
+		});
+
+		AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+			if(!player.isCreative() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue()) && entity instanceof PlayerEntity) {
+				return ActionResult.FAIL;
+			}
+			return ActionResult.PASS;
 		});
 
 		ServerLivingEntityEvents.ALLOW_DEATH.register((entity, damageSource, damageAmount) -> {
