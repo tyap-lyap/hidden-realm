@@ -30,17 +30,19 @@ public class HiddenRealmEvents {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			var bazaar = server.getWorld(HiddenRealmMod.SILENT_BAZAAR);
 
-			StructureTemplate structure = server.getStructureTemplateManager().getTemplateOrBlank(HiddenRealmMod.id("silent_bazaar"));
-			StructurePlacementData data = new StructurePlacementData().setMirror(BlockMirror.NONE).setIgnoreEntities(true);
-			structure.place(bazaar, new BlockPos(-32, 0, -32), new BlockPos(0, 0, 0), data, bazaar.getRandom(), 0);
+			if(bazaar.getBlockState(new BlockPos(-32, 0, -32)).isAir()) {
+				StructureTemplate structure = server.getStructureTemplateManager().getTemplateOrBlank(HiddenRealmMod.id("silent_bazaar"));
+				StructurePlacementData data = new StructurePlacementData().setMirror(BlockMirror.NONE).setIgnoreEntities(true);
+				structure.place(bazaar, new BlockPos(-32, 0, -32), new BlockPos(0, 0, 0), data, bazaar.getRandom(), 0);
+			}
 		});
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
 			if (!player.isCreative() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
-				return TypedActionResult.fail(ItemStack.EMPTY);
+				return TypedActionResult.fail(player.getStackInHand(hand));
 			}
 
-			return TypedActionResult.pass(ItemStack.EMPTY);
+			return TypedActionResult.pass(player.getStackInHand(hand));
 		});
 
 		UseBlockCallback.EVENT.register((player, world, hand, res) -> {
