@@ -12,19 +12,15 @@ import java.awt.*;
 
 public class HiddenRealmClient implements ClientModInitializer {
 
+	@Override
+	public void onInitializeClient() {
+		HudRenderCallback.EVENT.register(HiddenRealmClient::drawLunarCoins);
+	}
 
-
-
-	private static void xui (DrawContext drawContext, RenderTickCounter renderTickCounter){
+	private static void drawLunarCoins(DrawContext drawContext, RenderTickCounter renderTickCounter) {
 		Color color = new Color(24, 193, 245);
 		if (!MinecraftClient.getInstance().options.hudHidden) {
 			drawContext.drawText(MinecraftClient.getInstance().textRenderer, Text.of(((LunarCoinExtension)MinecraftClient.getInstance().player).getLunarCoin() + " TEST COCK"), 30 / 2, 80, color.getRGB(), true);
 		}
-	}
-
-	@Override
-	public void onInitializeClient() {
-
-		HudRenderCallback.EVENT.register(HiddenRealmClient::xui);
 	}
 }

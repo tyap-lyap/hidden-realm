@@ -22,6 +22,7 @@ dependencies {
 
 	modLocalRuntime "maven.modrinth:huge-structure-blocks:1.1.2"
 	modLocalRuntime "maven.modrinth:yeetus-experimentus:b7C4gGUr"
+	modLocalRuntime "maven.modrinth:worldedit:7.3.6"
 }
 
 base {

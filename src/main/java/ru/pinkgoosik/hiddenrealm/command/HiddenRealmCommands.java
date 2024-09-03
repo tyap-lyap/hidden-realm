@@ -4,10 +4,13 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.server.command.ServerCommandSource;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
 
 import java.util.Set;
 
+import static com.mojang.brigadier.arguments.IntegerArgumentType.getInteger;
+import static com.mojang.brigadier.arguments.IntegerArgumentType.integer;
 import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
 
@@ -26,5 +29,16 @@ public class HiddenRealmCommands {
 			}
 			return 1;
 		}))));
+
+		dispatcher.register(literal("hiddenrealm").then(literal("setlunar")
+			.then(argument("lunar", integer()).executes(ctx -> setLunar(ctx.getSource(), getInteger(ctx, "lunar"))))));
+	}
+
+	private static int setLunar(ServerCommandSource source, int coins) {
+		if(source.getPlayer() != null) {
+			((LunarCoinExtension)source.getPlayer()).setLunarCoin(coins);
+		}
+
+		return 1;
 	}
 }

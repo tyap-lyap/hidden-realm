@@ -18,7 +18,7 @@ abstract class PlayerMixin implements PlayerExtension {
 	PlayerEntity self = (PlayerEntity)(Object)this;
 	public PlayerExtension.PlayerPosition prevPosition = null;
 
-	@Inject(method = "writeCustomDataToNbt", at = @At("HEAD"))
+	@Inject(method = "writeCustomDataToNbt", at = @At("TAIL"))
 	void writeCustomDataToNbt(NbtCompound nbt, CallbackInfo ci) {
 
 		if(prevPosition != null) {
@@ -34,7 +34,7 @@ abstract class PlayerMixin implements PlayerExtension {
 		}
 	}
 
-	@Inject(method = "readCustomDataFromNbt", at = @At("HEAD"))
+	@Inject(method = "readCustomDataFromNbt", at = @At("TAIL"))
 	void readCustomDataFromNbt(NbtCompound nbt, CallbackInfo ci) {
 		if(nbt.contains("PreviousPositionBeforeBazaar")) {
 			NbtCompound compound = nbt.getCompound("PreviousPositionBeforeBazaar");
