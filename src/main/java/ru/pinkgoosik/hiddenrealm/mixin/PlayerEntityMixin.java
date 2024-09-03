@@ -44,4 +44,11 @@ public abstract class PlayerEntityMixin extends LivingEntity implements LunarCoi
 	public void setLunarCoin(int coin){
 		 this.dataTracker.set(LUNAR_COIN,coin);
 	}
+
+	@Override
+	public void addLunarCoin(int amount) {
+		if (this.dataTracker.get(LUNAR_COIN) + amount >= 0) {
+			this.dataTracker.set(LUNAR_COIN, this.dataTracker.get(LUNAR_COIN) + amount);
+		}
+	}
 }

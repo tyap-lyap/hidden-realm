@@ -4,10 +4,11 @@
   "package": "ru.pinkgoosik.hiddenrealm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerMixin",
-    "PlayerEntityMixin"
+    "PlayerEntityMixin",
+    "PlayerMixin"
   ],
   "client": [
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
