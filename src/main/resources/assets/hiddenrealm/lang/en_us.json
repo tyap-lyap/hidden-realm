@@ -2,7 +2,10 @@
   "modmenu.descriptionTranslation.hiddenrealm": "This mod adds new Hidden Realm: Silent Bazaar. CurseForge Modjam participant",
   "itemGroup.hiddenrealm.items": "Hidden Realm",
   "message.hiddenrealm.silent_bazaar_death": "Your body and your soul violently left the Hidden Realm.",
+  "message.hiddenrealm.not_enough_coins": "Not enough coins",
 
   "block.hiddenrealm.bazaar_portal": "Bazaar Portal",
+  "block.hiddenrealm.trading_pedestal": "Trading Pedestal"
+
   "item.hiddenrealm.lunar_coin": "Lunar Coin"
 }

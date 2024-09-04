@@ -9,13 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
+import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 
 public class TradingPedestalBlock extends Block implements BlockEntityProvider {
-	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
 
 	public TradingPedestalBlock(Settings settings) {
 		super(settings);
@@ -30,20 +29,18 @@ public class TradingPedestalBlock extends Block implements BlockEntityProvider {
 	@Override
 	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 		if(world.getBlockEntity(pos) instanceof TradingPedestalBlockEntity entity) {
-			if(!entity.sellingItem.isEmpty()) {
+			if(!entity.sellingItem.isEmpty() && ((LunarCoinExtension)player).getLunarCoin() >= entity.price) {
 				if(!world.isClient()) {
 					dropStack(world, pos.up(), entity.sellingItem.copy());
-					entity.sellingItem = ItemStack.EMPTY;
-					entity.updateListeners();
+					if(!entity.renewable) {
+						entity.sellingItem = ItemStack.EMPTY;
+						entity.updateListeners();
+					}
+					((LunarCoinExtension)player).setLunarCoin(((LunarCoinExtension)player).getLunarCoin() - entity.price);
 				}
 				return ActionResult.SUCCESS;
 			}
 		}
 		return super.onUse(state, world, pos, player, hit);
 	}
-
-//	@Override
-//	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-//		return SHAPE;
-//	}
 }
