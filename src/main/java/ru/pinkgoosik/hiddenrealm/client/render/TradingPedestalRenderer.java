@@ -17,11 +17,11 @@ public class TradingPedestalRenderer<T extends TradingPedestalBlockEntity> imple
 	@Override
 	public void render(T entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
 		var world = entity.getWorld();
+		ItemStack stack = entity.sellingItem;
 
-		if(world != null && !entity.isRemoved()) {
+		if(world != null && !entity.isRemoved() && !stack.isEmpty()) {
 			matrices.push();
 
-			ItemStack stack = entity.sellingItem;
 			MinecraftClient client = MinecraftClient.getInstance();
 			BakedModel model = client.getItemRenderer().getModel(stack, world, null, 0);
 			Vector3f translate = model.getTransformation().ground.translation;

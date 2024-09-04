@@ -27,9 +27,7 @@ public class TradingPedestalBlockEntity extends BlockEntity {
 	protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
 		super.writeNbt(nbt, registryLookup);
 
-		if(!this.sellingItem.isEmpty()) {
-			nbt.put("sellingItem", this.sellingItem.encode(registryLookup));
-		}
+		nbt.put("sellingItem", this.sellingItem.encodeAllowEmpty(registryLookup));
 		nbt.putInt("price", this.price);
 		nbt.putBoolean("renewable", this.renewable);
 	}
@@ -38,10 +36,7 @@ public class TradingPedestalBlockEntity extends BlockEntity {
 	protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
 		super.readNbt(nbt, registryLookup);
 
-		if(nbt.contains("sellingItem")) {
-			this.sellingItem = ItemStack.fromNbtOrEmpty(registryLookup, nbt.getCompound("sellingItem"));
-		}
-
+		this.sellingItem = ItemStack.fromNbtOrEmpty(registryLookup, nbt.getCompound("sellingItem"));
 		this.price = nbt.getInt("price");
 		this.renewable = nbt.getBoolean("renewable");
 	}
