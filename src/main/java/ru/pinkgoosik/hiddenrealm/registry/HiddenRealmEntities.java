@@ -8,6 +8,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.entity.LunarCoinEntity;
 import ru.pinkgoosik.hiddenrealm.entity.ShopkeeperEntity;
 
 public class HiddenRealmEntities {
@@ -16,6 +17,12 @@ public class HiddenRealmEntities {
 		Registries.ENTITY_TYPE,
 		HiddenRealmMod.id("shopkeeper"),
 		EntityType.Builder.create(ShopkeeperEntity::new, SpawnGroup.AMBIENT).dimensions(2f, 2f).build("shopkeeper")
+	);
+
+	public static final EntityType<LunarCoinEntity> LUNAR_COIN = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("lunar_coin"),
+		EntityType.Builder.create(LunarCoinEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build("lunar_coin")
 	);
 
 	public static void init() {

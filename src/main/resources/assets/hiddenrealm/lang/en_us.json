@@ -3,5 +3,6 @@
   "itemGroup.hiddenrealm.items": "Hidden Realm",
   "message.hiddenrealm.silent_bazaar_death": "Your body and your soul violently left the Hidden Realm.",
 
-  "block.hiddenrealm.bazaar_portal": "Bazaar Portal"
+  "block.hiddenrealm.bazaar_portal": "Bazaar Portal",
+  "item.hiddenrealm.lunar_coin": "Lunar Coin"
 }
