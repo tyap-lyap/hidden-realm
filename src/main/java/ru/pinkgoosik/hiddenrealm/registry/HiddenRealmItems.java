@@ -9,12 +9,15 @@ import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.item.LunarCoinItem;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class HiddenRealmItems {
 	public static final Map<Identifier, Item> ITEMS = new LinkedHashMap<>();
+
+	public static final Item LUNAR_COIN = add("lunar_coin", new LunarCoinItem(new Item.Settings()));
 
 	public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
 		.displayName(Text.translatable("itemGroup.hiddenrealm.items"))
