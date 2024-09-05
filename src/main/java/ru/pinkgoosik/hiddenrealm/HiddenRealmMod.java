@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.pinkgoosik.hiddenrealm.command.HiddenRealmCommands;
+import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
 import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
@@ -28,6 +29,7 @@ public class HiddenRealmMod implements ModInitializer {
 		HiddenRealmBlocks.init();
 		HiddenRealmEntities.init();
 		HiddenRealmBlockEntities.init();
+		BazaarTrades.init();
 	}
 
 	public static Identifier id(String path) {

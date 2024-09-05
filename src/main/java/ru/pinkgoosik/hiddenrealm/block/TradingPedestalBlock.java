@@ -4,14 +4,18 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
+import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
+import ru.pinkgoosik.hiddenrealm.data.Trade;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 
 public class TradingPedestalBlock extends Block implements BlockEntityProvider {
@@ -24,6 +28,17 @@ public class TradingPedestalBlock extends Block implements BlockEntityProvider {
 	@Override
 	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
 		return new TradingPedestalBlockEntity(pos, state);
+	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+		if(!world.isClient && world.getBlockEntity(pos) instanceof TradingPedestalBlockEntity entity) {
+			Trade trade = BazaarTrades.TRADES.get(Random.create().nextInt(BazaarTrades.TRADES.size()));
+
+			entity.sellingItem = new ItemStack(trade.item, trade.count);
+			entity.price = trade.price;
+			entity.renewable = trade.renewable;
+		}
 	}
 
 	@Override

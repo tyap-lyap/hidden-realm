@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
@@ -15,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 
 public class TradingPedestalBlockEntity extends BlockEntity {
-	public ItemStack sellingItem = Items.CHERRY_BOAT.getDefaultStack();
+	public ItemStack sellingItem = ItemStack.EMPTY;
 	public int price = 0;
 	public boolean renewable = false;
 

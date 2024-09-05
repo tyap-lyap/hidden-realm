@@ -25,12 +25,13 @@ public class TradingPedestalRenderer<T extends TradingPedestalBlockEntity> imple
 			MinecraftClient client = MinecraftClient.getInstance();
 			BakedModel model = client.getItemRenderer().getModel(stack, world, null, 0);
 			Vector3f translate = model.getTransformation().ground.translation;
-			matrices.translate(translate.x() + 0.5, translate.y() + 1.25, translate.z() + 0.5);
 
 			if (stack.getItem() instanceof BlockItem) {
+				matrices.translate(translate.x() + 0.5, translate.y() + 1.15, translate.z() + 0.5);
 				matrices.scale(1.5F, 1.5F, 1.5F);
 			}
 			else {
+				matrices.translate(translate.x() + 0.5, translate.y() + 1.25, translate.z() + 0.5);
 				matrices.scale(1.25F, 1.25F, 1.25F);
 			}
 
