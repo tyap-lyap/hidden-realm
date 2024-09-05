@@ -21,6 +21,7 @@ import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
+import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
@@ -40,7 +41,7 @@ public class HiddenRealmClient implements ClientModInitializer {
             }
         });
 
-		EntityRendererRegistry.register(HiddenRealmEntities.LUNAR_COIN, (context) -> new EmptyEntityRenderer<>(context) {});
+		EntityRendererRegistry.register(HiddenRealmEntities.LUNAR_COIN, (context) -> new LunarCoinEntityRenderer(context) {});
 
 		EntityModelLayerRegistry.registerModelLayer(SHOPKEEPER_LAYER, ShopkeeperModel::getTexturedModelData);
 

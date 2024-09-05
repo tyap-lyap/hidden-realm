@@ -1,5 +1,6 @@
 package ru.pinkgoosik.hiddenrealm.event;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -7,6 +8,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.structure.StructurePlacementData;
@@ -21,6 +23,10 @@ import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
 
 public class HiddenRealmEvents {
+
+	public static int cachedCoins = 0;
+
+	public static int showLunarTimer;
 
 	public static void init() {
 
@@ -82,6 +88,16 @@ public class HiddenRealmEvents {
 			}
 
 			return true;
+		});
+
+		ClientTickEvents.START_WORLD_TICK.register((world) -> {
+			if (cachedCoins != ((LunarCoinExtension)MinecraftClient.getInstance().player).getLunarCoin()){
+				cachedCoins = ((LunarCoinExtension)MinecraftClient.getInstance().player).getLunarCoin();
+				showLunarTimer = 200;
+			}
+			if(showLunarTimer != 0) {
+				showLunarTimer--;
+			}
 		});
 	}
 }
