@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
@@ -33,7 +32,7 @@ public class TradingPedestalBlock extends Block implements BlockEntityProvider {
 	@Override
 	public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
 		if(!world.isClient && world.getBlockEntity(pos) instanceof TradingPedestalBlockEntity entity) {
-			Trade trade = BazaarTrades.TRADES.get(Random.create().nextInt(BazaarTrades.TRADES.size()));
+			Trade trade = BazaarTrades.TRADES.get(world.getRandom().nextInt(BazaarTrades.TRADES.size()));
 
 			entity.sellingItem = new ItemStack(trade.item, trade.count);
 			entity.price = trade.price;

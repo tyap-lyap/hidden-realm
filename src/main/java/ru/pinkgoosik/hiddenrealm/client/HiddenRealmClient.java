@@ -14,10 +14,12 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Language;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.block.RefresherBlock;
 import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
@@ -79,6 +81,25 @@ public class HiddenRealmClient implements ClientModInitializer {
 					if(entity.sellingItem.getCount() > 1) {
 						context.drawTextWithShadow(client.textRenderer, String.valueOf(entity.sellingItem.getCount()), (width / 2) + 22, (height / 2) + 11, 1622517);
 					}
+				}
+
+				context.getMatrices().pop();
+			}
+			if(block.getBlock() instanceof RefresherBlock) {
+				context.getMatrices().push();
+				var height = context.getScaledWindowHeight();
+				var width = context.getScaledWindowWidth();
+				int price = 2;
+
+				if(((LunarCoinExtension)client.player).getLunarCoin() >= price) {
+					var text = Text.literal(Language.getInstance().get("message.hiddenrealm.refresh_price").replace("%price%", String.valueOf(price)));
+
+					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2) + 10, (height / 2) + 10, 1622517);
+					context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (8 + (client.textRenderer.getWidth(text) / 2)), (height / 2) + 5 ,1, 15, 15);
+				}
+				else {
+					var text = Text.translatable("message.hiddenrealm.not_enough_coins");
+					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2), (height / 2) + 10, 16076354);
 				}
 
 				context.getMatrices().pop();

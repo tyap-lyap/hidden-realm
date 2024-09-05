@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "half=lower,facing=east": {
+      "model": "hiddenrealm:block/refresher",
+      "y": 90
+    },
+    "half=lower,facing=north": {
+      "model": "hiddenrealm:block/refresher"
+    },
+    "half=lower,facing=south": {
+      "model": "hiddenrealm:block/refresher",
+      "y": 180
+    },
+    "half=lower,facing=west": {
+      "model": "hiddenrealm:block/refresher",
+      "y": 270
+    }
+  }
+}
