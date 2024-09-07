@@ -14,7 +14,9 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
+import ru.pinkgoosik.hiddenrealm.data.BazaarInstance;
 import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
 import ru.pinkgoosik.hiddenrealm.data.Trade;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
@@ -38,26 +40,22 @@ public class RefresherBlock extends Block {
 	@Override
 	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 
-		if(((LunarCoinExtension)player).getLunarCoin() >= 2) {
+		if(((LunarCoinExtension)player).getLunarCoin() >= 2 && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
 			if(!world.isClient) {
 
-				for (int y = -4; y <= 4; y++) {
-					for (int x = -7; x <= 7; x++) {
-						for (int z = -7; z <= 7; z++) {
-							BlockPos blockPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+//				for (int y = -4; y <= 4; y++) {
+//					for (int x = -7; x <= 7; x++) {
+//						for (int z = -7; z <= 7; z++) {
+//							BlockPos blockPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
+//
+//							if(world.getBlockEntity(blockPos) instanceof TradingPedestalBlockEntity entity) {
+//								entity.refresh();
+//							}
+//						}
+//					}
+//				}
 
-							if(world.getBlockEntity(blockPos) instanceof TradingPedestalBlockEntity entity) {
-								Trade trade = BazaarTrades.TRADES.get(world.getRandom().nextInt(BazaarTrades.TRADES.size()));
-
-								entity.sellingItem = new ItemStack(trade.item, trade.count);
-								entity.price = trade.price;
-								entity.renewable = trade.renewable;
-								entity.updateListeners();
-							}
-						}
-					}
-				}
-
+				BazaarInstance.refreshTrades();
 				((LunarCoinExtension)player).setLunarCoin(((LunarCoinExtension)player).getLunarCoin() - 2);
 			}
 

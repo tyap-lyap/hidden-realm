@@ -30,8 +30,14 @@ public class BazaarPortalBlock extends Block {
 	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		if (entity instanceof ServerPlayerEntity player && entity.canUsePortals(false)) {
 			if (!player.hasPortalCooldown()) {
-				((PlayerExtension)player).savePrevPosition();
-				player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), 0.5, 80, 0.5, Set.of(), -45, 0);
+				if(player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+					((PlayerExtension)player).teleportToPrevPosition();
+					player.setPortalCooldown(300);
+				}
+				else {
+					player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), -2.5, 107.5, -15.5, Set.of(), 45, 0);
+				}
+
 			}
 		}
 	}

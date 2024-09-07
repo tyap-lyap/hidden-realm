@@ -11,6 +11,8 @@ import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
+import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
+import ru.pinkgoosik.hiddenrealm.data.Trade;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 
 public class TradingPedestalBlockEntity extends BlockEntity {
@@ -56,6 +58,15 @@ public class TradingPedestalBlockEntity extends BlockEntity {
 	public void updateListeners() {
 		this.markDirty();
 		this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
+	}
+
+	public void refresh() {
+		Trade trade = BazaarTrades.TRADES.get(getWorld().getRandom().nextInt(BazaarTrades.TRADES.size()));
+
+		this.sellingItem = new ItemStack(trade.item, trade.count);
+		this.price = trade.price;
+		this.renewable = trade.renewable;
+		this.updateListeners();
 	}
 }
 

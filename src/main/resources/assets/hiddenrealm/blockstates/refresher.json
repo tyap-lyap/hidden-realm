@@ -1,5 +1,8 @@
 {
   "variants": {
+    "half=upper": {
+      "model": "hiddenrealm:block/refresher"
+    },
     "half=lower,facing=east": {
       "model": "hiddenrealm:block/refresher",
       "y": 90

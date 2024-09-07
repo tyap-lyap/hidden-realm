@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -19,6 +20,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.data.BazaarInstance;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
 
@@ -37,11 +39,17 @@ public class HiddenRealmEvents {
 		ServerLifecycleEvents.SERVER_STARTED.register(server -> {
 			var bazaar = server.getWorld(HiddenRealmMod.SILENT_BAZAAR);
 
-			if(bazaar.getBlockState(new BlockPos(-32, 0, -32)).isAir()) {
+			if(bazaar != null && bazaar.getBlockState(new BlockPos(-32, 0, -32)).isAir()) {
 				StructureTemplate structure = server.getStructureTemplateManager().getTemplateOrBlank(HiddenRealmMod.id("silent_bazaar"));
 				StructurePlacementData data = new StructurePlacementData().setMirror(BlockMirror.NONE).setIgnoreEntities(true);
 				structure.place(bazaar, new BlockPos(-32, 0, -32), new BlockPos(0, 0, 0), data, bazaar.getRandom(), 0);
 			}
+
+			BazaarInstance.init(server, bazaar);
+		});
+
+		ServerTickEvents.END_SERVER_TICK.register(server -> {
+			if(BazaarInstance.instance != null) BazaarInstance.serverTick(server);
 		});
 
 		UseItemCallback.EVENT.register((player, world, hand) -> {
@@ -81,7 +89,7 @@ public class HiddenRealmEvents {
 				if (player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
 					player.setHealth(20F);
 					ex.teleportToPrevPosition();
-					player.setPortalCooldown(400);
+					player.setPortalCooldown(300);
 					player.sendMessage(Text.translatable("message.hiddenrealm.silent_bazaar_death"));
 					return false;
 				}

@@ -23,9 +23,8 @@ public class HiddenRealmCommands {
 	private static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
 		dispatcher.register(literal("hiddenrealm").then(literal("teleport").then(literal("silent_bazaar").executes(context -> {
 			var player = context.getSource().getPlayer();
-			if(player instanceof PlayerExtension ex && !player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
-				ex.savePrevPosition();
-				player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), 0.5, 80, 0.5, Set.of(), -45, 0);
+			if(player != null && !player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+				player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), -2.5, 107.5, -15.5, Set.of(), 45, 0);
 			}
 			return 1;
 		}))));
