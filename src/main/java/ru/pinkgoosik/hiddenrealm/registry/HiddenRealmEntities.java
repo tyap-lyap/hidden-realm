@@ -8,6 +8,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
+import ru.pinkgoosik.hiddenrealm.entity.FireTrailEntity;
 import ru.pinkgoosik.hiddenrealm.entity.LunarCoinEntity;
 import ru.pinkgoosik.hiddenrealm.entity.ShopkeeperEntity;
 import ru.pinkgoosik.hiddenrealm.entity.TestLunarCreeperEntity;
@@ -30,6 +31,12 @@ public class HiddenRealmEntities {
 		Registries.ENTITY_TYPE,
 		HiddenRealmMod.id("lunar_coin"),
 		EntityType.Builder.create(LunarCoinEntity::new, SpawnGroup.MISC).dimensions(0.5f, 0.5f).build("lunar_coin")
+	);
+
+	public static final EntityType<FireTrailEntity> FIRE_TRAIL = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("fire_trail"),
+		EntityType.Builder.create(FireTrailEntity::new, SpawnGroup.MISC).dimensions(0.75f, 0.25f).build("fire_trail")
 	);
 
 	public static void init() {
