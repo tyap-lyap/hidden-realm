@@ -10,6 +10,7 @@ import net.minecraft.registry.Registry;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.entity.LunarCoinEntity;
 import ru.pinkgoosik.hiddenrealm.entity.ShopkeeperEntity;
+import ru.pinkgoosik.hiddenrealm.entity.TestLunarCreeperEntity;
 
 public class HiddenRealmEntities {
 
@@ -17,6 +18,12 @@ public class HiddenRealmEntities {
 		Registries.ENTITY_TYPE,
 		HiddenRealmMod.id("shopkeeper"),
 		EntityType.Builder.create(ShopkeeperEntity::new, SpawnGroup.AMBIENT).dimensions(2f, 2f).build("shopkeeper")
+	);
+
+	public static final EntityType<TestLunarCreeperEntity> TEST_LUNAR_CREEPER = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("test_lunar_creeper"),
+		EntityType.Builder.create(TestLunarCreeperEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.7F).maxTrackingRange(8).build("test_lunar_creeper")
 	);
 
 	public static final EntityType<LunarCoinEntity> LUNAR_COIN = Registry.register(
@@ -27,5 +34,7 @@ public class HiddenRealmEntities {
 
 	public static void init() {
 		FabricDefaultAttributeRegistry.register(SHOPKEEPER, PassiveEntity.createLivingAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16));
+
+		FabricDefaultAttributeRegistry.register(TEST_LUNAR_CREEPER, TestLunarCreeperEntity.createCreeperAttributes());
 	}
 }

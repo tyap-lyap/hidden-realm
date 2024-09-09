@@ -8,7 +8,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
-import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.entity.Entity;
@@ -23,7 +22,9 @@ import ru.pinkgoosik.hiddenrealm.block.RefresherBlock;
 import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
+import ru.pinkgoosik.hiddenrealm.client.model.TestLunarCreeperModel;
 import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
+import ru.pinkgoosik.hiddenrealm.client.render.TestLunarCreeperRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
@@ -32,9 +33,14 @@ import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 public class HiddenRealmClient implements ClientModInitializer {
 
 	public static final EntityModelLayer SHOPKEEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("shopkeeper"), "main");
+	public static final EntityModelLayer TESTLUNARCREEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("lunar_creeper"), "main");
 
 	@Override
 	public void onInitializeClient() {
+
+		EntityRendererRegistry.register(HiddenRealmEntities.TEST_LUNAR_CREEPER, TestLunarCreeperRenderer::new);
+
+		EntityModelLayerRegistry.registerModelLayer(TESTLUNARCREEPER_LAYER, TestLunarCreeperModel::getTexturedModelData);
 
 		EntityRendererRegistry.register(HiddenRealmEntities.SHOPKEEPER, (context) -> new MobEntityRenderer(context, new ShopkeeperModel(context.getPart(SHOPKEEPER_LAYER)), 0.5f) {
             @Override
