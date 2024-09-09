@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "hiddenrealm:block/moonstone_bricks",
+    "side": "hiddenrealm:block/moonstone_bricks",
+    "top": "hiddenrealm:block/moonstone_bricks"
+  }
+}

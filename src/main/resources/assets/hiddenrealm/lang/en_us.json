@@ -9,6 +9,10 @@
   "block.hiddenrealm.bazaar_portal": "Bazaar Portal",
   "block.hiddenrealm.trading_pedestal": "Trading Pedestal",
   "block.hiddenrealm.refresher": "Refresher",
+  "block.hiddenrealm.moonstone_bricks": "Moonstone Bricks",
+  "block.hiddenrealm.moonstone_brick_stairs": "Moonstone Brick Stairs",
+  "block.hiddenrealm.moonstone_brick_slab": "Moonstone Brick Slab",
+  "block.hiddenrealm.chiseled_moonstone_bricks": "Chiseled Moonstone Bricks",
 
   "item.hiddenrealm.lunar_coin": "Lunar Coin"
 }

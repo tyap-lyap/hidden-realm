@@ -3,7 +3,6 @@ package ru.pinkgoosik.hiddenrealm.registry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -25,7 +24,7 @@ public class HiddenRealmItems {
 			HiddenRealmItems.ITEMS.forEach((id, item) -> entries.add(item.getDefaultStack()));
 			HiddenRealmBlocks.ITEMS.forEach((id, item) -> entries.add(item.getDefaultStack()));
 		})
-		.icon(Items.BLUE_STAINED_GLASS::getDefaultStack).build();
+		.icon(HiddenRealmBlocks.BAZAAR_PORTAL.asItem()::getDefaultStack).build();
 
 	public static void init() {
 		Registry.register(Registries.ITEM_GROUP, HiddenRealmMod.id("items"), ITEM_GROUP);

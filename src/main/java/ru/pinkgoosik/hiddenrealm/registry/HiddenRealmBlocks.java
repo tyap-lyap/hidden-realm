@@ -2,6 +2,8 @@ package ru.pinkgoosik.hiddenrealm.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SlabBlock;
+import net.minecraft.block.StairsBlock;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -25,6 +27,11 @@ public class HiddenRealmBlocks {
 	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.BEDROCK)));
 	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.BEDROCK).nonOpaque().notSolid()));
 	public static final Block REFRESHER = add("refresher", new RefresherBlock(copy(Blocks.STONE).nonOpaque().notSolid()));
+
+	public static final Block MOONSTONE_BRICKS = add("moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
+	public static final Block MOONSTONE_BRICK_STAIRS = add("moonstone_brick_stairs", new StairsBlock(MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
+	public static final Block MOONSTONE_BRICK_SLAB = add("moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
+	public static final Block CHISELED_MOONSTONE_BRICKS = add("chiseled_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS).luminance(state -> 10)));
 
 	public static void init() {
 		ITEMS.forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
