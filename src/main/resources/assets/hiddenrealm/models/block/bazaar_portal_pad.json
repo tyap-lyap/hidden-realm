@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hiddenrealm:block/bazaar_portal_pad",
+    "side": "hiddenrealm:block/bazaar_portal_pad_side"
+  }
+}

@@ -7,12 +7,17 @@
   "message.hiddenrealm.refresh_price": "%price% Coins to refresh trades",
 
   "block.hiddenrealm.bazaar_portal": "Bazaar Portal",
+  "block.hiddenrealm.bazaar_portal_pad": "Bazaar Portal Pad",
   "block.hiddenrealm.trading_pedestal": "Trading Pedestal",
   "block.hiddenrealm.refresher": "Refresher",
   "block.hiddenrealm.moonstone_bricks": "Moonstone Bricks",
   "block.hiddenrealm.moonstone_brick_stairs": "Moonstone Brick Stairs",
   "block.hiddenrealm.moonstone_brick_slab": "Moonstone Brick Slab",
+  "block.hiddenrealm.mossy_moonstone_bricks": "Mossy Moonstone Bricks",
   "block.hiddenrealm.chiseled_moonstone_bricks": "Chiseled Moonstone Bricks",
+  "block.hiddenrealm.bottle_wisp": "Wisp In a Bottle",
+  "block.hiddenrealm.lunar_mushroom": "Lunar Mushroom",
+  "block.hiddenrealm.bazaar_lamp": "Bazaar Lamp",
 
   "item.hiddenrealm.lunar_coin": "Lunar Coin",
   "item.hiddenrealm.fire_boots": "Fire Boots",

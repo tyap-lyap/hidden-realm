@@ -17,8 +17,6 @@ import net.minecraft.world.World;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.data.BazaarInstance;
-import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
-import ru.pinkgoosik.hiddenrealm.data.Trade;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 
 public class RefresherBlock extends Block {
@@ -40,22 +38,25 @@ public class RefresherBlock extends Block {
 	@Override
 	protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
 
-		if(((LunarCoinExtension)player).getLunarCoin() >= 2 && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+		if(((LunarCoinExtension)player).getLunarCoin() >= 2) {
 			if(!world.isClient) {
+				if(world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+					BazaarInstance.refreshTrades();
+				}
+				else {
+					for (int y = -4; y <= 4; y++) {
+						for (int x = -10; x <= 10; x++) {
+							for (int z = -10; z <= 10; z++) {
+								BlockPos blockPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
 
-//				for (int y = -4; y <= 4; y++) {
-//					for (int x = -7; x <= 7; x++) {
-//						for (int z = -7; z <= 7; z++) {
-//							BlockPos blockPos = new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z);
-//
-//							if(world.getBlockEntity(blockPos) instanceof TradingPedestalBlockEntity entity) {
-//								entity.refresh();
-//							}
-//						}
-//					}
-//				}
+								if(world.getBlockEntity(blockPos) instanceof TradingPedestalBlockEntity entity) {
+									entity.refresh();
+								}
+							}
+						}
+					}
+				}
 
-				BazaarInstance.refreshTrades();
 				((LunarCoinExtension)player).setLunarCoin(((LunarCoinExtension)player).getLunarCoin() - 2);
 			}
 

@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import ru.pinkgoosik.hiddenrealm.command.HiddenRealmCommands;
 import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
 import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
-import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
-import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
-import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
-import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmItems;
+import ru.pinkgoosik.hiddenrealm.registry.*;
 
 public class HiddenRealmMod implements ModInitializer {
 	public static final String MOD_ID = "hiddenrealm";
@@ -29,6 +26,7 @@ public class HiddenRealmMod implements ModInitializer {
 		HiddenRealmBlocks.init();
 		HiddenRealmEntities.init();
 		HiddenRealmBlockEntities.init();
+		HiddenRealmParticles.init();
 		BazaarTrades.init();
 	}
 

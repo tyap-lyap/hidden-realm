@@ -1,12 +1,14 @@
 package ru.pinkgoosik.hiddenrealm.client;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.entity.MobEntityRenderer;
@@ -29,6 +31,7 @@ import ru.pinkgoosik.hiddenrealm.client.render.TestLunarCreeperRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 
 public class HiddenRealmClient implements ClientModInitializer {
@@ -60,6 +63,9 @@ public class HiddenRealmClient implements ClientModInitializer {
 		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
 			onHudRender(drawContext);
 		});
+
+		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.BOTTLE_WISP, RenderLayer.getTranslucent());
+		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.BAZAAR_LAMP, RenderLayer.getCutout());
 	}
 
 	private static void onHudRender(DrawContext context) {

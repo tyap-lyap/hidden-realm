@@ -1,18 +1,15 @@
 package ru.pinkgoosik.hiddenrealm.registry;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SlabBlock;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
-import ru.pinkgoosik.hiddenrealm.block.BazaarPortalBlock;
-import ru.pinkgoosik.hiddenrealm.block.RefresherBlock;
-import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
+import ru.pinkgoosik.hiddenrealm.block.*;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,6 +21,7 @@ public class HiddenRealmBlocks {
 	public static final Map<Identifier, BlockItem> ITEMS = new LinkedHashMap<>();
 	public static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
+	public static final Block BAZAAR_PORTAL_PAD = add("bazaar_portal_pad", new BazaarPortalPadBlock(copy(Blocks.BEDROCK).ticksRandomly()));
 	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.BEDROCK)));
 	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.BEDROCK).nonOpaque().notSolid()));
 	public static final Block REFRESHER = add("refresher", new RefresherBlock(copy(Blocks.STONE).nonOpaque().notSolid()));
@@ -31,7 +29,11 @@ public class HiddenRealmBlocks {
 	public static final Block MOONSTONE_BRICKS = add("moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
 	public static final Block MOONSTONE_BRICK_STAIRS = add("moonstone_brick_stairs", new StairsBlock(MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
 	public static final Block MOONSTONE_BRICK_SLAB = add("moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
+	public static final Block MOSSY_MOONSTONE_BRICKS = add("mossy_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
 	public static final Block CHISELED_MOONSTONE_BRICKS = add("chiseled_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS).luminance(state -> 10)));
+	public static final Block BOTTLE_WISP = add("bottle_wisp", new BottleWispBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block LUNAR_MUSHROOM = add("lunar_mushroom", new LunarMushroomBlock(copy(Blocks.BROWN_MUSHROOM).sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block BAZAAR_LAMP = add("bazaar_lamp", new BazaarLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
 
 	public static void init() {
 		ITEMS.forEach((id, item) -> Registry.register(Registries.ITEM, id, item));

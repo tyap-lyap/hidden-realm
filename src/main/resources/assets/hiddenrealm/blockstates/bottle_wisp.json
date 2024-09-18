@@ -1,0 +1,35 @@
+{
+  "variants": {
+    "hanging=false,facing=east": {
+      "model": "hiddenrealm:block/bottle_wisp",
+      "y": 90
+    },
+    "hanging=false,facing=north": {
+      "model": "hiddenrealm:block/bottle_wisp"
+    },
+    "hanging=false,facing=south": {
+      "model": "hiddenrealm:block/bottle_wisp",
+      "y": 180
+    },
+    "hanging=false,facing=west": {
+      "model": "hiddenrealm:block/bottle_wisp",
+      "y": 270
+    },
+
+    "hanging=true,facing=east": {
+      "model": "hiddenrealm:block/hanging_bottle_wisp",
+      "y": 90
+    },
+    "hanging=true,facing=north": {
+      "model": "hiddenrealm:block/hanging_bottle_wisp"
+    },
+    "hanging=true,facing=south": {
+      "model": "hiddenrealm:block/hanging_bottle_wisp",
+      "y": 180
+    },
+    "hanging=true,facing=west": {
+      "model": "hiddenrealm:block/hanging_bottle_wisp",
+      "y": 270
+    }
+  }
+}
