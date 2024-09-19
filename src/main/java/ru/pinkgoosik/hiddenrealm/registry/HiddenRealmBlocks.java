@@ -23,13 +23,16 @@ public class HiddenRealmBlocks {
 
 	public static final Block BAZAAR_PORTAL_PAD = add("bazaar_portal_pad", new BazaarPortalPadBlock(copy(Blocks.BEDROCK).ticksRandomly()));
 	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.BEDROCK)));
-	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.BEDROCK).nonOpaque().notSolid()));
-	public static final Block REFRESHER = add("refresher", new RefresherBlock(copy(Blocks.STONE).nonOpaque().notSolid()));
+	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.BEDROCK).nonOpaque()));
+	public static final Block REFRESHER = add("refresher", new RefresherBlock(copy(Blocks.STONE).nonOpaque()));
+	public static final Block LUNAR_FLAG = add("lunar_flag", new LunarFlagBlock(copy(Blocks.OAK_PLANKS).nonOpaque()));
 
 	public static final Block MOONSTONE_BRICKS = add("moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
 	public static final Block MOONSTONE_BRICK_STAIRS = add("moonstone_brick_stairs", new StairsBlock(MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
 	public static final Block MOONSTONE_BRICK_SLAB = add("moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
 	public static final Block MOSSY_MOONSTONE_BRICKS = add("mossy_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
+	public static final Block MOSSY_MOONSTONE_BRICK_STAIRS = add("mossy_moonstone_brick_stairs", new StairsBlock(MOSSY_MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
+	public static final Block MOSSY_MOONSTONE_BRICK_SLAB = add("mossy_moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
 	public static final Block CHISELED_MOONSTONE_BRICKS = add("chiseled_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS).luminance(state -> 10)));
 	public static final Block BOTTLE_WISP = add("bottle_wisp", new BottleWispBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block LUNAR_MUSHROOM = add("lunar_mushroom", new LunarMushroomBlock(copy(Blocks.BROWN_MUSHROOM).sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY)));

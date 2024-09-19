@@ -1,5 +1,6 @@
 {
 	"parent": "block/block",
+  "gui_light": "front",
 	"textures": {
 		"0": "hiddenrealm:block/lunar_mushroom",
 		"particle": "hiddenrealm:block/lunar_mushroom"

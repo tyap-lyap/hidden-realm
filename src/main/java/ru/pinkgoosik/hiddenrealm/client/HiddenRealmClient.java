@@ -66,6 +66,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.BOTTLE_WISP, RenderLayer.getTranslucent());
 		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.BAZAAR_LAMP, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.LUNAR_FLAG, RenderLayer.getCutout());
 	}
 
 	private static void onHudRender(DrawContext context) {

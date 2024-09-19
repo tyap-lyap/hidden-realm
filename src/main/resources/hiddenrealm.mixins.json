@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExperienceOrbMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerMixin",
     "ServerPlayerMixin"
   ],
   "client": [
+    "BipedEntityModelMixin",
     "InGameHudMixin"
   ],
   "injectors": {

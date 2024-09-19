@@ -1,6 +1,7 @@
 {
 	"parent": "block/block",
 	"texture_size": [32, 32],
+  "gui_light": "front",
 	"textures": {
 		"0": "hiddenrealm:block/bottle_wisp",
 		"particle": "hiddenrealm:block/bottle_wisp_particle"

@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "hiddenrealm:block/lunar_flag"
+    },
+    "axis=z": {
+      "model": "hiddenrealm:block/lunar_flag",
+      "y": 90
+    }
+  }
+}
