@@ -25,9 +25,9 @@ import ru.pinkgoosik.hiddenrealm.block.RefresherBlock;
 import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
-import ru.pinkgoosik.hiddenrealm.client.model.TestLunarCreeperModel;
+import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedCreeperModel;
 import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
-import ru.pinkgoosik.hiddenrealm.client.render.TestLunarCreeperRenderer;
+import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedCreeperRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
@@ -37,14 +37,14 @@ import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 public class HiddenRealmClient implements ClientModInitializer {
 
 	public static final EntityModelLayer SHOPKEEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("shopkeeper"), "main");
-	public static final EntityModelLayer TESTLUNARCREEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("lunar_creeper"), "main");
+	public static final EntityModelLayer MOONBLESSED_CREEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_creeper"), "main");
 
 	@Override
 	public void onInitializeClient() {
 
-		EntityRendererRegistry.register(HiddenRealmEntities.TEST_LUNAR_CREEPER, TestLunarCreeperRenderer::new);
+		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_CREEPER, MoonblessedCreeperRenderer::new);
 
-		EntityModelLayerRegistry.registerModelLayer(TESTLUNARCREEPER_LAYER, TestLunarCreeperModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_CREEPER_LAYER, MoonblessedCreeperModel::getTexturedModelData);
 
 		EntityRendererRegistry.register(HiddenRealmEntities.SHOPKEEPER, (context) -> new MobEntityRenderer(context, new ShopkeeperModel(context.getPart(SHOPKEEPER_LAYER)), 0.5f) {
             @Override
@@ -55,6 +55,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 		EntityRendererRegistry.register(HiddenRealmEntities.LUNAR_COIN, (context) -> new LunarCoinEntityRenderer(context) {});
 		EntityRendererRegistry.register(HiddenRealmEntities.FIRE_TRAIL, (context) -> new EmptyEntityRenderer<>(context) {});
+		EntityRendererRegistry.register(HiddenRealmEntities.SPORE, (context) -> new EmptyEntityRenderer<>(context) {});
 
 		EntityModelLayerRegistry.registerModelLayer(SHOPKEEPER_LAYER, ShopkeeperModel::getTexturedModelData);
 

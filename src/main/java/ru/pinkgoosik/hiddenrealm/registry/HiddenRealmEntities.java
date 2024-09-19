@@ -8,10 +8,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
-import ru.pinkgoosik.hiddenrealm.entity.FireTrailEntity;
-import ru.pinkgoosik.hiddenrealm.entity.LunarCoinEntity;
-import ru.pinkgoosik.hiddenrealm.entity.ShopkeeperEntity;
-import ru.pinkgoosik.hiddenrealm.entity.TestLunarCreeperEntity;
+import ru.pinkgoosik.hiddenrealm.entity.*;
 
 public class HiddenRealmEntities {
 
@@ -21,10 +18,10 @@ public class HiddenRealmEntities {
 		EntityType.Builder.create(ShopkeeperEntity::new, SpawnGroup.AMBIENT).dimensions(2f, 2f).build("shopkeeper")
 	);
 
-	public static final EntityType<TestLunarCreeperEntity> TEST_LUNAR_CREEPER = Registry.register(
+	public static final EntityType<MoonblessedCreeperEntity> MOONBLESSED_CREEPER = Registry.register(
 		Registries.ENTITY_TYPE,
-		HiddenRealmMod.id("test_lunar_creeper"),
-		EntityType.Builder.create(TestLunarCreeperEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.7F).maxTrackingRange(8).build("test_lunar_creeper")
+		HiddenRealmMod.id("moonblessed_creeper"),
+		EntityType.Builder.create(MoonblessedCreeperEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.7F).maxTrackingRange(8).build("moonblessed_creeper")
 	);
 
 	public static final EntityType<LunarCoinEntity> LUNAR_COIN = Registry.register(
@@ -39,9 +36,15 @@ public class HiddenRealmEntities {
 		EntityType.Builder.create(FireTrailEntity::new, SpawnGroup.MISC).dimensions(0.75f, 0.25f).build("fire_trail")
 	);
 
+	public static final EntityType<SporeEntity> SPORE = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("spore"),
+		EntityType.Builder.create(SporeEntity::new, SpawnGroup.MISC).makeFireImmune().dimensions(2f, 2f).maxTrackingRange(10).trackingTickInterval(Integer.MAX_VALUE).build("spore")
+	);
+
 	public static void init() {
 		FabricDefaultAttributeRegistry.register(SHOPKEEPER, PassiveEntity.createLivingAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16));
 
-		FabricDefaultAttributeRegistry.register(TEST_LUNAR_CREEPER, TestLunarCreeperEntity.createCreeperAttributes());
+		FabricDefaultAttributeRegistry.register(MOONBLESSED_CREEPER, MoonblessedCreeperEntity.createCreeperAttributes());
 	}
 }

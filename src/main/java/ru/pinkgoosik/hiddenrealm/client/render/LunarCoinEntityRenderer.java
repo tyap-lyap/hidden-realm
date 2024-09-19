@@ -38,11 +38,11 @@ public class LunarCoinEntityRenderer extends EntityRenderer<LunarCoinEntity> {
 
 		BakedModel bakedModel = this.itemRenderer.getModel(itemStack, entity.getWorld(),null, entity.getId());
 
-		float j = MathHelper.sin(((float)entity.age + tickDelta) / 10.0F + uniqueOffset) * 0.1F + 0.1F;
-		float k = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
-		matrixStack.translate(0.0F, j + 0.25F * k, 0.0F);
-		float l = ((float)entity.age + tickDelta) / 20.0F + this.uniqueOffset;
-		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation(l));
+		float height = MathHelper.sin(((float)entity.age + tickDelta) / 10.0F + uniqueOffset) * 0.1F + 0.1F;
+		float heightModel = bakedModel.getTransformation().getTransformation(ModelTransformationMode.GROUND).scale.y();
+		matrixStack.translate(0.0F, height + 0.25F * heightModel, 0.0F);
+		float rotation = ((float)entity.age + tickDelta) / 20.0F + this.uniqueOffset;
+		matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation(rotation));
 		matrixStack.scale(1.5f,1.5f,1.5f);
 		this.itemRenderer.renderItem(itemStack, ModelTransformationMode.GROUND, false, matrixStack, vertexConsumers, light, 0, bakedModel);
 		matrixStack.pop();

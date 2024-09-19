@@ -9,10 +9,10 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.GoatEntity;
-import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -27,29 +27,24 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 
-import java.util.Collection;
 import java.util.EnumSet;
-import java.util.Iterator;
 
-public class TestLunarCreeperEntity extends HostileEntity{
-	private static final TrackedData<Integer> FUSE_SPEED;
-	private static final TrackedData<Boolean> CHARGED;
-	private static final TrackedData<Boolean> IGNITED;
+public class MoonblessedCreeperEntity extends HostileEntity implements MoonblessedEntity{
+
+	private static final TrackedData<Integer> FUSE_SPEED = DataTracker.registerData(MoonblessedCreeperEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private int lastFuseTime;
 	private int currentFuseTime;
-	private int fuseTime = 30;
-	private int explosionRadius = 3;
-	private int headsDropped;
+	private int fuseTime = 200;
 
-	public TestLunarCreeperEntity(EntityType<? extends TestLunarCreeperEntity> entityType, World world) {
+	public MoonblessedCreeperEntity(EntityType<? extends MoonblessedCreeperEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
 	protected void initGoals() {
 		this.goalSelector.add(1, new SwimGoal(this));
 		this.goalSelector.add(2, new CreeperIgniteGoal(this));
-		this.goalSelector.add(3, new FleeEntityGoal(this, OcelotEntity.class, 6.0F, 1.0, 1.2));
 		this.goalSelector.add(4, new MeleeAttackGoal(this, 1.0, false));
 		this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
@@ -79,34 +74,19 @@ public class TestLunarCreeperEntity extends HostileEntity{
 	protected void initDataTracker(DataTracker.Builder builder) {
 		super.initDataTracker(builder);
 		builder.add(FUSE_SPEED, -1);
-		builder.add(CHARGED, false);
-		builder.add(IGNITED, false);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
-		if ((Boolean)this.dataTracker.get(CHARGED)) {
-			nbt.putBoolean("powered", true);
-		}
+
 
 		nbt.putShort("Fuse", (short)this.fuseTime);
-		nbt.putByte("ExplosionRadius", (byte)this.explosionRadius);
-		nbt.putBoolean("ignited", this.isIgnited());
 	}
 
 	public void readCustomDataFromNbt(NbtCompound nbt) {
 		super.readCustomDataFromNbt(nbt);
-		this.dataTracker.set(CHARGED, nbt.getBoolean("powered"));
 		if (nbt.contains("Fuse", 99)) {
 			this.fuseTime = nbt.getShort("Fuse");
-		}
-
-		if (nbt.contains("ExplosionRadius", 99)) {
-			this.explosionRadius = nbt.getByte("ExplosionRadius");
-		}
-
-		if (nbt.getBoolean("ignited")) {
-			this.ignite();
 		}
 
 	}
@@ -114,9 +94,7 @@ public class TestLunarCreeperEntity extends HostileEntity{
 	public void tick() {
 		if (this.isAlive()) {
 			this.lastFuseTime = this.currentFuseTime;
-			if (this.isIgnited()) {
-				this.setFuseSpeed(1);
-			}
+
 
 			int i = this.getFuseSpeed();
 			if (i > 0 && this.currentFuseTime == 0) {
@@ -144,6 +122,17 @@ public class TestLunarCreeperEntity extends HostileEntity{
 		}
 	}
 
+	@Override
+	public void onDeath(DamageSource damageSource) {
+		super.onDeath(damageSource);
+		int count = this.getWorld().getRandom().nextBetween(1,3);
+		LunarCoinEntity lunarCoin = new LunarCoinEntity(HiddenRealmEntities.LUNAR_COIN,this.getWorld());
+		
+		for(int i = 0; i < count ;++i){
+
+		}
+	}
+
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.ENTITY_CREEPER_HURT;
 	}
@@ -168,10 +157,6 @@ public class TestLunarCreeperEntity extends HostileEntity{
 		return true;
 	}
 
-	public boolean shouldRenderOverlay() {
-		return (Boolean)this.dataTracker.get(CHARGED);
-	}
-
 	public float getClientFuseTime(float timeDelta) {
 		return MathHelper.lerp(timeDelta, (float)this.lastFuseTime, (float)this.currentFuseTime) / (float)(this.fuseTime - 2);
 	}
@@ -184,94 +169,35 @@ public class TestLunarCreeperEntity extends HostileEntity{
 		this.dataTracker.set(FUSE_SPEED, fuseSpeed);
 	}
 
-	public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
-		super.onStruckByLightning(world, lightning);
-		this.dataTracker.set(CHARGED, true);
-	}
-
-	protected ActionResult interactMob(PlayerEntity player, Hand hand) {
-		ItemStack itemStack = player.getStackInHand(hand);
-		if (itemStack.isIn(ItemTags.CREEPER_IGNITERS)) {
-			SoundEvent soundEvent = itemStack.isOf(Items.FIRE_CHARGE) ? SoundEvents.ITEM_FIRECHARGE_USE : SoundEvents.ITEM_FLINTANDSTEEL_USE;
-			this.getWorld().playSound(player, this.getX(), this.getY(), this.getZ(), soundEvent, this.getSoundCategory(), 1.0F, this.random.nextFloat() * 0.4F + 0.8F);
-			if (!this.getWorld().isClient) {
-				this.ignite();
-				if (!itemStack.isDamageable()) {
-					itemStack.decrement(1);
-				} else {
-					itemStack.damage(1, player, getSlotForHand(hand));
-				}
-			}
-
-			return ActionResult.success(this.getWorld().isClient);
-		} else {
-			return super.interactMob(player, hand);
-		}
-	}
-
 	private void explode() {
 		if (!this.getWorld().isClient) {
-			float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
-			this.dead = true;
-
+		//	this.dead = true;
+			this.fuseTime = 200;
+			this.currentFuseTime = 0;
 			//this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionRadius * f, World.ExplosionSourceType.MOB);
-			this.spawnEffectsCloud();
-			this.onRemoval(Entity.RemovalReason.KILLED);
-			this.discard();
+		//	this.onRemoval(Entity.RemovalReason.KILLED);
+		//	this.discard();
 		}
-
-	}
-
-	private void spawnEffectsCloud() {
-		Collection<StatusEffectInstance> collection = this.getStatusEffects();
-		if (!collection.isEmpty()) {
-			AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
-			areaEffectCloudEntity.setRadius(2.5F);
-			areaEffectCloudEntity.setRadiusOnUse(-0.5F);
-			areaEffectCloudEntity.setWaitTime(10);
-			areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
-			areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float)areaEffectCloudEntity.getDuration());
-			Iterator var3 = collection.iterator();
-
-			while(var3.hasNext()) {
-				StatusEffectInstance statusEffectInstance = (StatusEffectInstance)var3.next();
-				areaEffectCloudEntity.addEffect(new StatusEffectInstance(statusEffectInstance));
-			}
-
-			this.getWorld().spawnEntity(areaEffectCloudEntity);
-		}
-
-	}
-
-	public boolean isIgnited() {
-		return (Boolean)this.dataTracker.get(IGNITED);
-	}
-
-	public void ignite() {
-		this.dataTracker.set(IGNITED, true);
-	}
-
-	public boolean shouldDropHead() {
-		return this.shouldRenderOverlay() && this.headsDropped < 1;
-	}
-
-	public void onHeadDropped() {
-		++this.headsDropped;
+		SporeEntity sporeEntity = new SporeEntity(HiddenRealmEntities.SPORE,this.getWorld());
+		sporeEntity.setPosition(this.getPos());
+		sporeEntity.setRadius(20);
+		sporeEntity.setDuration(600);
+		this.getWorld().spawnEntity(sporeEntity);
 	}
 
 	public class CreeperIgniteGoal extends Goal {
-		private final TestLunarCreeperEntity creeper;
+		private final MoonblessedCreeperEntity creeper;
 		@Nullable
 		private LivingEntity target;
 
-		public CreeperIgniteGoal(TestLunarCreeperEntity creeper) {
+		public CreeperIgniteGoal(MoonblessedCreeperEntity creeper) {
 			this.creeper = creeper;
 			this.setControls(EnumSet.of(Control.MOVE));
 		}
 
 		public boolean canStart() {
 			LivingEntity livingEntity = this.creeper.getTarget();
-			return this.creeper.getFuseSpeed() > 0 || livingEntity != null && this.creeper.squaredDistanceTo(livingEntity) < 9.0;
+			return this.creeper.getFuseSpeed() > 0 || livingEntity != null && this.creeper.squaredDistanceTo(livingEntity) < 11.0;
 		}
 
 		public void start() {
@@ -289,20 +215,14 @@ public class TestLunarCreeperEntity extends HostileEntity{
 
 		public void tick() {
 			if (this.target == null) {
-				this.creeper.setFuseSpeed(-1);
+				this.creeper.setFuseSpeed(-10);
 			} else if (this.creeper.squaredDistanceTo(this.target) > 49.0) {
-				this.creeper.setFuseSpeed(-1);
+				this.creeper.setFuseSpeed(-10);
 			} else if (!this.creeper.getVisibilityCache().canSee(this.target)) {
-				this.creeper.setFuseSpeed(-1);
+				this.creeper.setFuseSpeed(-10);
 			} else {
-				this.creeper.setFuseSpeed(1);
+				this.creeper.setFuseSpeed(3);
 			}
 		}
-	}
-
-	static {
-		FUSE_SPEED = DataTracker.registerData(TestLunarCreeperEntity.class, TrackedDataHandlerRegistry.INTEGER);
-		CHARGED = DataTracker.registerData(TestLunarCreeperEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-		IGNITED = DataTracker.registerData(TestLunarCreeperEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	}
 }
