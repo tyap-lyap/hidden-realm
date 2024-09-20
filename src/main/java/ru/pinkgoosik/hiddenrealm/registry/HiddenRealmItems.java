@@ -19,9 +19,7 @@ public class HiddenRealmItems {
 
 	public static final Item LUNAR_COIN = add("lunar_coin", new LunarCoinItem(new Item.Settings()));
 	public static final Item FIRE_BOOTS = add("fire_boots", new FireBootsItem(new Item.Settings().fireproof().maxCount(1)));
-
 	public static final Item BEHEADING_KATANA = add("beheading_katana", new Item(new Item.Settings().maxCount(1)));
-
 	public static final Item EXPERIENCE_NECKLACE = add("experience_necklace", new Item(new Item.Settings().maxCount(1).maxDamage(100)));
 
 	public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()

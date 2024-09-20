@@ -8,7 +8,7 @@ import static net.minecraft.item.Items.*;
 public class BazaarTrades {
 	public static final ArrayList<Trade> TRADES = new ArrayList<>();
 
-	//Placeholder trades, TODO: replace with custom content
+	//Placeholder trades, TODO: replace with custom content, make trades configurable
 	public static void init() {
 		add(TOTEM_OF_UNDYING, 1, 24, false);
 		add(FLINT, 16, 10, true);

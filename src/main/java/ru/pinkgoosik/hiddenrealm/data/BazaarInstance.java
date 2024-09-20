@@ -2,7 +2,6 @@ package ru.pinkgoosik.hiddenrealm.data;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
@@ -37,18 +36,14 @@ public class BazaarInstance {
 	}
 
 	public static void serverTick(MinecraftServer server) {
+		var bazaar = instance.server.getWorld(HiddenRealmMod.SILENT_BAZAAR);
 		instance.age++;
 
-		if(instance.age % 24000 == 0) {
-			refreshTrades();
-
-			server.getPlayerManager().getPlayerList().forEach(player -> {
-				if(player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
-					player.sendMessage(Text.literal("Trades have been refreshed"));
-				}
-			});
+		if(bazaar != null) {
+			if(bazaar.getTime() % 24000 == 0) {
+				refreshTrades();
+			}
 		}
-
 	}
 
 	public static void refreshTrades() {

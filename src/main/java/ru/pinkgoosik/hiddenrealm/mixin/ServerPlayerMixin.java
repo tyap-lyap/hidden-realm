@@ -1,6 +1,7 @@
 package ru.pinkgoosik.hiddenrealm.mixin;
 
 import com.mojang.authlib.GameProfile;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,12 +42,15 @@ abstract class ServerPlayerMixin extends PlayerEntity implements PlayerExtension
 	@Inject(method = "tick", at = @At("TAIL"))
 	void tick(CallbackInfo ci) {
 		var world = getServerWorld();
+		var trinkets = TrinketsApi.getTrinketComponent(this);
 
-		if(this.getEquippedStack(EquipmentSlot.FEET).isOf(HiddenRealmItems.FIRE_BOOTS) && this.isOnGround() && world.getServer().getTicks() % 5 == 0) {
-			var trail = new FireTrailEntity(HiddenRealmEntities.FIRE_TRAIL, world);
-			trail.owner = this.getUuid();
-			trail.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-			world.spawnEntity(trail);
+		if(trinkets.isPresent()) {
+			if(trinkets.get().isEquipped(HiddenRealmItems.FIRE_BOOTS) && this.isOnGround() && world.getServer().getTicks() % 5 == 0) {
+				var trail = new FireTrailEntity(HiddenRealmEntities.FIRE_TRAIL, world);
+				trail.owner = this.getUuid();
+				trail.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
+				world.spawnEntity(trail);
+			}
 		}
 	}
 
