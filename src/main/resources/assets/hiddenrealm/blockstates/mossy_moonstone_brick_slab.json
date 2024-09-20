@@ -4,7 +4,7 @@
       "model": "hiddenrealm:block/mossy_moonstone_brick_slab"
     },
     "type=double": {
-      "model": "hiddenrealm:block/mossy_moonstone_bricks"
+      "model": "hiddenrealm:block/mossy_moonstone_bricks_0"
     },
     "type=top": {
       "model": "hiddenrealm:block/mossy_moonstone_brick_slab_top"
