@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "enabled=true": {
+      "model": "hiddenrealm:block/guarding_lamp_enabled"
+    },
+    "enabled=false": {
+      "model": "hiddenrealm:block/guarding_lamp_disabled"
+    }
+  }
+}

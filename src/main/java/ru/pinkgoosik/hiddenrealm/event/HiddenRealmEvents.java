@@ -11,6 +11,8 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
@@ -23,6 +25,7 @@ import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.data.BazaarInstance;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.extension.PlayerExtension;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEffects;
 
 public class HiddenRealmEvents {
 
@@ -72,7 +75,9 @@ public class HiddenRealmEvents {
 			if (!player.isCreative() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
 				return false;
 			}
-
+			if(!player.isCreative() && player.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE) && state.isIn(TagKey.of(RegistryKeys.BLOCK, HiddenRealmMod.id("protected_by_guarding_lamp")))) {
+				return false;
+			}
 			return true;
 		});
 

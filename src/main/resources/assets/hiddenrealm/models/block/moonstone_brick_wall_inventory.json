@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "hiddenrealm:block/moonstone_bricks"
+  }
+}

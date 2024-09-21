@@ -21,10 +21,15 @@ abstract class BipedEntityModelMixin<T extends LivingEntity> extends AnimalModel
 	@Final
 	public ModelPart head;
 
+	@Shadow
+	@Final
+	public ModelPart hat;
+
 	@Inject(method = "setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
 	void setAngles(T livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
 		if(livingEntity instanceof LivingEntityExtension ex) {
             head.visible = !ex.isBeheaded();
+			hat.visible = !ex.isBeheaded();
 		}
 	}
 }

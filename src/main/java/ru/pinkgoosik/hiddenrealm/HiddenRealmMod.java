@@ -27,6 +27,7 @@ public class HiddenRealmMod implements ModInitializer {
 		HiddenRealmEntities.init();
 		HiddenRealmBlockEntities.init();
 		HiddenRealmParticles.init();
+		HiddenRealmEffects.init();
 		BazaarTrades.init();
 	}
 

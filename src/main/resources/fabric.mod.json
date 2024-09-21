@@ -17,6 +17,7 @@
   "depends": {
     "fabricloader": "*",
     "fabric-api": "*",
+    "trinkets": "*",
     "minecraft": ">=1.21",
     "java": ">=21"
   }

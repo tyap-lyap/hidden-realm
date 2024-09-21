@@ -28,15 +28,20 @@ public class HiddenRealmBlocks {
 	public static final Block LUNAR_FLAG = add("lunar_flag", new LunarFlagBlock(copy(Blocks.OAK_PLANKS).nonOpaque()));
 
 	public static final Block MOONSTONE_BRICKS = add("moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
-	public static final Block MOONSTONE_BRICK_STAIRS = add("moonstone_brick_stairs", new StairsBlock(MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
-	public static final Block MOONSTONE_BRICK_SLAB = add("moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
+	public static final Block MOONSTONE_BRICK_STAIRS = add("moonstone_brick_stairs", new StairsBlock(MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICK_STAIRS)));
+	public static final Block MOONSTONE_BRICK_SLAB = add("moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICK_SLAB)));
+	public static final Block MOONSTONE_BRICK_WALL = add("moonstone_brick_wall", new WallBlock(copy(Blocks.STONE_BRICK_WALL)));
+
 	public static final Block MOSSY_MOONSTONE_BRICKS = add("mossy_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS)));
-	public static final Block MOSSY_MOONSTONE_BRICK_STAIRS = add("mossy_moonstone_brick_stairs", new StairsBlock(MOSSY_MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICKS)));
-	public static final Block MOSSY_MOONSTONE_BRICK_SLAB = add("mossy_moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICKS)));
+	public static final Block MOSSY_MOONSTONE_BRICK_STAIRS = add("mossy_moonstone_brick_stairs", new StairsBlock(MOSSY_MOONSTONE_BRICKS.getDefaultState(), copy(Blocks.STONE_BRICK_STAIRS)));
+	public static final Block MOSSY_MOONSTONE_BRICK_SLAB = add("mossy_moonstone_brick_slab", new SlabBlock(copy(Blocks.STONE_BRICK_SLAB)));
+	public static final Block MOSSY_MOONSTONE_BRICK_WALL = add("mossy_moonstone_brick_wall", new WallBlock(copy(Blocks.STONE_BRICK_WALL)));
+
 	public static final Block CHISELED_MOONSTONE_BRICKS = add("chiseled_moonstone_bricks", new Block(copy(Blocks.STONE_BRICKS).luminance(state -> 10)));
 	public static final Block BOTTLE_WISP = add("bottle_wisp", new BottleWispBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block LUNAR_MUSHROOM = add("lunar_mushroom", new LunarMushroomBlock(copy(Blocks.BROWN_MUSHROOM).sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block BAZAAR_LAMP = add("bazaar_lamp", new BazaarLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block GUARDING_LAMP = add("guarding_lamp", new GuardingLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> state.get(GuardingLampBlock.ENABLED) ? 15 : 8).pistonBehavior(PistonBehavior.DESTROY)));
 
 	public static void init() {
 		ITEMS.forEach((id, item) -> Registry.register(Registries.ITEM, id, item));

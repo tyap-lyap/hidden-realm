@@ -23,10 +23,14 @@ public class BazaarPortalPadBlock extends Block {
 		super.randomTick(state, world, pos, random);
 		if(world.getBlockState(pos.up()).isAir()) {
 			world.setBlockState(pos.up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
+			if(world.getBlockState(pos.up().up()).isAir()) {
+				world.setBlockState(pos.up().up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
+			}
+			if(world.getBlockState(pos.up().up().up()).isAir()) {
+				world.setBlockState(pos.up().up().up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
+			}
 		}
-		if(world.getBlockState(pos.up().up()).isAir()) {
-			world.setBlockState(pos.up().up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
-		}
+
 	}
 
 	@Override
@@ -36,6 +40,9 @@ public class BazaarPortalPadBlock extends Block {
 		}
 		if(world.getBlockState(pos.up().up()).isOf(HiddenRealmBlocks.BAZAAR_PORTAL)) {
 			world.setBlockState(pos.up().up(), Blocks.AIR.getDefaultState());
+		}
+		if(world.getBlockState(pos.up().up().up()).isOf(HiddenRealmBlocks.BAZAAR_PORTAL)) {
+			world.setBlockState(pos.up().up().up(), Blocks.AIR.getDefaultState());
 		}
 		return super.onBreak(world, pos, state, player);
 	}
@@ -47,6 +54,10 @@ public class BazaarPortalPadBlock extends Block {
 
 			if(world.getBlockState(pos.up().up()).isAir()) {
 				world.setBlockState(pos.up().up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
+
+				if(world.getBlockState(pos.up().up().up()).isAir()) {
+					world.setBlockState(pos.up().up().up(), HiddenRealmBlocks.BAZAAR_PORTAL.getDefaultState());
+				}
 			}
 		}
 	}
