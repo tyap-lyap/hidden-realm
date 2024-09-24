@@ -9,8 +9,9 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import ru.pinkgoosik.hiddenrealm.entity.MoonblessedCreeperEntity;
 
-public class MoonblessedCreeperModel<T extends Entity> extends SinglePartEntityModel<T> {
+public class MoonblessedCreeperModel extends SinglePartEntityModel<MoonblessedCreeperEntity> {
 	private final ModelPart root;
 	private final ModelPart head;
 	private final ModelPart right_front_leg;
@@ -45,7 +46,7 @@ public class MoonblessedCreeperModel<T extends Entity> extends SinglePartEntityM
 
 		return TexturedModelData.of(modelData, 64, 32);
 	}
-	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setAngles(MoonblessedCreeperEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.head.yaw = headYaw * 0.017453292F;
 		this.head.pitch = headPitch * 0.017453292F;
 		this.left_hind_leg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;

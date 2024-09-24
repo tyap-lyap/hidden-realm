@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 public class SporeEntity extends Entity {
 
-	private static final TrackedData<Float> RADIUS = DataTracker.registerData(SporeEntity.class, TrackedDataHandlerRegistry.FLOAT);;
+	private static final TrackedData<Float> RADIUS = DataTracker.registerData(SporeEntity.class, TrackedDataHandlerRegistry.FLOAT);
 	private int duration;
 
 	public SporeEntity(EntityType<?> type, World world) {
@@ -50,8 +50,8 @@ public class SporeEntity extends Entity {
 			if (!list.isEmpty()) {
 				for (LivingEntity entity : list) {
 					if (entity instanceof MoonblessedEntity) {
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 3));
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 2));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
 					} else {
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 3));
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 200, 1));
@@ -63,8 +63,6 @@ public class SporeEntity extends Entity {
 				float radius = this.getDataTracker().get(RADIUS);
 				this.setRadius(radius + (-radius/duration));
 				--duration;
-
-
 
 			} else {
 				this.remove(RemovalReason.DISCARDED);
@@ -84,7 +82,9 @@ public class SporeEntity extends Entity {
 
 	public void calculateDimensions() {
 		super.calculateDimensions();
-		this.setPosition(this.getX(), this.getY(), this.getZ());
+		float radius = this.getDataTracker().get(RADIUS);
+
+		this.setPosition(this.getX(), this.getPos().add(0,-(-radius/duration)/2,0).getY(), this.getZ());
 	}
 
 	public void onTrackedDataSet(TrackedData<?> data) {
@@ -101,7 +101,7 @@ public class SporeEntity extends Entity {
 
 	public void setRadius(float radius) {
 		if (!this.getWorld().isClient) {
-			this.getDataTracker().set(RADIUS, MathHelper.clamp(radius, 0.0F, 128.0F));
+			this.getDataTracker().set(RADIUS, MathHelper.clamp(radius, 0.0F, 32.0F));
 		}
 	}
 

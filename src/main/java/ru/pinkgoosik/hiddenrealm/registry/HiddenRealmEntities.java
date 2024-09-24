@@ -24,6 +24,18 @@ public class HiddenRealmEntities {
 		EntityType.Builder.create(MoonblessedCreeperEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.7F).maxTrackingRange(8).build("moonblessed_creeper")
 	);
 
+	public static final EntityType<MoonblessedSkeletonEntity> MOONBLESSED_SKELETON = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("moonblessed_skeleton"),
+		EntityType.Builder.create(MoonblessedSkeletonEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.99F).eyeHeight(1.74F).vehicleAttachment(-0.7F).maxTrackingRange(8).build("moonblessed_skeleton")
+	);
+
+	public static final EntityType<MoonblessedZombieEntity> MOONBLESSED_ZOMBIE = Registry.register(
+		Registries.ENTITY_TYPE,
+		HiddenRealmMod.id("moonblessed_zombie"),
+		EntityType.Builder.create(MoonblessedZombieEntity::new, SpawnGroup.MONSTER).dimensions(0.6F, 1.95F).eyeHeight(1.74F).passengerAttachments(2.0125F).vehicleAttachment(-0.7F).maxTrackingRange(8).build("moonblessed_zombie")
+	);
+
 	public static final EntityType<LunarCoinEntity> LUNAR_COIN = Registry.register(
 		Registries.ENTITY_TYPE,
 		HiddenRealmMod.id("lunar_coin"),
@@ -46,5 +58,7 @@ public class HiddenRealmEntities {
 		FabricDefaultAttributeRegistry.register(SHOPKEEPER, PassiveEntity.createLivingAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16));
 
 		FabricDefaultAttributeRegistry.register(MOONBLESSED_CREEPER, MoonblessedCreeperEntity.createCreeperAttributes());
+		FabricDefaultAttributeRegistry.register(MOONBLESSED_SKELETON, MoonblessedZombieEntity.createZombieAttributes());
+		FabricDefaultAttributeRegistry.register(MOONBLESSED_ZOMBIE, MoonblessedZombieEntity.createZombieAttributes());
 	}
 }

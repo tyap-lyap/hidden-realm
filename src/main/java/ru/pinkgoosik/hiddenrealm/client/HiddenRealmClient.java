@@ -10,9 +10,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
+import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
+import net.minecraft.client.render.entity.model.SkeletonEntityModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -24,10 +26,12 @@ import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.block.RefresherBlock;
 import ru.pinkgoosik.hiddenrealm.block.TradingPedestalBlock;
 import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
+import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedZombieModel;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
 import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedCreeperModel;
 import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedCreeperRenderer;
+import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedZombieRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
@@ -37,14 +41,24 @@ import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 public class HiddenRealmClient implements ClientModInitializer {
 
 	public static final EntityModelLayer SHOPKEEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("shopkeeper"), "main");
+	public static final EntityModelLayer MOONBLESSED_ZOMBIE_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_zombie"), "main");
 	public static final EntityModelLayer MOONBLESSED_CREEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_creeper"), "main");
+	public static final EntityModelLayer MOONBLESSED_SKELETON_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_skeleton"), "main");
 
 	@Override
 	public void onInitializeClient() {
 
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_CREEPER, MoonblessedCreeperRenderer::new);
+		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_ZOMBIE, MoonblessedZombieRenderer::new);
 
 		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_CREEPER_LAYER, MoonblessedCreeperModel::getTexturedModelData);
+
+		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_SKELETON, (context) -> new BipedEntityRenderer(context, new SkeletonEntityModel(context.getPart(MOONBLESSED_SKELETON_LAYER)), 0.5f) {
+			@Override
+			public Identifier getTexture(Entity entity) {
+				return HiddenRealmMod.id("textures/entity/moonblessed_skeleton.png");
+			}
+		});
 
 		EntityRendererRegistry.register(HiddenRealmEntities.SHOPKEEPER, (context) -> new MobEntityRenderer(context, new ShopkeeperModel(context.getPart(SHOPKEEPER_LAYER)), 0.5f) {
             @Override
@@ -53,11 +67,14 @@ public class HiddenRealmClient implements ClientModInitializer {
             }
         });
 
+
 		EntityRendererRegistry.register(HiddenRealmEntities.LUNAR_COIN, (context) -> new LunarCoinEntityRenderer(context) {});
 		EntityRendererRegistry.register(HiddenRealmEntities.FIRE_TRAIL, (context) -> new EmptyEntityRenderer<>(context) {});
 		EntityRendererRegistry.register(HiddenRealmEntities.SPORE, (context) -> new EmptyEntityRenderer<>(context) {});
 
 		EntityModelLayerRegistry.registerModelLayer(SHOPKEEPER_LAYER, ShopkeeperModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_ZOMBIE_LAYER, MoonblessedZombieModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_SKELETON_LAYER, SkeletonEntityModel::getTexturedModelData);
 
 		BlockEntityRendererFactories.register(HiddenRealmBlockEntities.TRADING_PEDESTAL, ctx -> new TradingPedestalRenderer<>());
 

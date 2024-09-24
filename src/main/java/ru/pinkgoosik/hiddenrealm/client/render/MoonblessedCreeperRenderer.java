@@ -11,7 +11,7 @@ import ru.pinkgoosik.hiddenrealm.client.HiddenRealmClient;
 import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedCreeperModel;
 import ru.pinkgoosik.hiddenrealm.entity.MoonblessedCreeperEntity;
 
-public class MoonblessedCreeperRenderer extends MobEntityRenderer<MoonblessedCreeperEntity, MoonblessedCreeperModel<MoonblessedCreeperEntity>> {
+public class MoonblessedCreeperRenderer extends MobEntityRenderer<MoonblessedCreeperEntity,MoonblessedCreeperModel>{
 	private static final Identifier TEXTURE = Identifier.of(HiddenRealmMod.MOD_ID,"textures/entity/moonblessed_creeper.png");
 
 
