@@ -18,8 +18,6 @@ import ru.pinkgoosik.hiddenrealm.registry.*;
 public class HiddenRealmMod implements ModInitializer {
 	public static final String MOD_ID = "hiddenrealm";
 	public static final Logger LOGGER = LoggerFactory.getLogger("Hidden Realm");
-	public static final SoundEvent ENTITY_CREEPER_PRIMED = 	Registry.register(Registries.SOUND_EVENT, Identifier.of(MOD_ID, "moonblessed_creeper_primed"),
-		SoundEvent.of(Identifier.of(MOD_ID, "moonblessed_creeper_primed")));
 	public static final RegistryKey<World> SILENT_BAZAAR = RegistryKey.of(RegistryKeys.WORLD, id("silent_bazaar"));
 
 	@Override
