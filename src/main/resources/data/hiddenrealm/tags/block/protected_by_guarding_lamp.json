@@ -4,10 +4,16 @@
     "hiddenrealm:moonstone_bricks",
     "hiddenrealm:moonstone_brick_stairs",
     "hiddenrealm:moonstone_brick_slab",
+    "hiddenrealm:moonstone_brick_wall",
 
     "hiddenrealm:mossy_moonstone_bricks",
     "hiddenrealm:mossy_moonstone_brick_stairs",
     "hiddenrealm:mossy_moonstone_brick_slab",
+    "hiddenrealm:mossy_moonstone_brick_wall",
+
+    "hiddenrealm:smooth_moonstone",
+    "hiddenrealm:smooth_moonstone_stairs",
+    "hiddenrealm:smooth_moonstone_slab",
 
     "hiddenrealm:bazaar_lamp",
     "hiddenrealm:lunar_flag",

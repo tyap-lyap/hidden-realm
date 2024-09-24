@@ -7,6 +7,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.function.BooleanBiFunction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -40,6 +41,18 @@ public class LunarFlagBlock extends Block {
 	@Override
 	protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return state.get(AXIS).equals(Direction.Axis.Z) ? Z_SHAPE : X_SHAPE;
+	}
+
+	@Override
+	protected BlockState rotate(BlockState state, BlockRotation rotation) {
+        return switch (rotation) {
+            case COUNTERCLOCKWISE_90, CLOCKWISE_90 -> switch (state.get(AXIS)) {
+                case Z -> state.with(AXIS, Direction.Axis.X);
+                case X -> state.with(AXIS, Direction.Axis.Z);
+                default -> state;
+            };
+            default -> state;
+        };
 	}
 
 	@Override

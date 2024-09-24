@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -55,16 +56,23 @@ public class HiddenRealmEvents {
 			if(BazaarInstance.instance != null) BazaarInstance.serverTick(server);
 		});
 
-		UseItemCallback.EVENT.register((player, world, hand) -> {
-			if (!player.isCreative() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
-				return TypedActionResult.fail(player.getStackInHand(hand));
-			}
-
-			return TypedActionResult.pass(player.getStackInHand(hand));
-		});
+//		UseItemCallback.EVENT.register((player, world, hand) -> {
+//			if (!player.isCreative() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue()) && player.getStackInHand(hand).getItem() instanceof BlockItem) {
+//				return TypedActionResult.fail(player.getStackInHand(hand));
+//			}
+//			if(!player.isCreative() && player.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE) && player.getStackInHand(hand).getItem() instanceof BlockItem) {
+//				return TypedActionResult.fail(player.getStackInHand(hand));
+//			}
+//
+//			return TypedActionResult.pass(player.getStackInHand(hand));
+//		});
 
 		UseBlockCallback.EVENT.register((player, world, hand, res) -> {
-			if (!player.isCreative() && !player.getStackInHand(hand).isEmpty() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+			if (!player.isCreative() && !player.getStackInHand(hand).isEmpty() && world.getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue()) && player.getStackInHand(hand).getItem() instanceof BlockItem) {
+				return ActionResult.FAIL;
+			}
+
+			if(!player.isCreative() && !player.getStackInHand(hand).isEmpty() && player.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE) && player.getStackInHand(hand).getItem() instanceof BlockItem) {
 				return ActionResult.FAIL;
 			}
 

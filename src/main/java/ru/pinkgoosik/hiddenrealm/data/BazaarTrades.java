@@ -1,6 +1,9 @@
 package ru.pinkgoosik.hiddenrealm.data;
 
 import net.minecraft.item.Item;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmItems;
+
 import java.util.ArrayList;
 
 import static net.minecraft.item.Items.*;
@@ -10,6 +13,12 @@ public class BazaarTrades {
 
 	//Placeholder trades, TODO: replace with custom content, make trades configurable
 	public static void init() {
+		add(HiddenRealmBlocks.MOONSTONE_BRICKS.asItem(), 32, 5, true);
+		add(HiddenRealmBlocks.SMOOTH_MOONSTONE.asItem(), 32, 5, true);
+		add(HiddenRealmBlocks.BAZAAR_LAMP.asItem(), 4, 10, true);
+		add(HiddenRealmItems.BEHEADING_KATANA, 1, 95, false);
+		add(HiddenRealmItems.FIRE_BOOTS, 1, 64, false);
+		add(HiddenRealmItems.EXPERIENCE_NECKLACE, 1, 54, false);
 		add(TOTEM_OF_UNDYING, 1, 24, false);
 		add(FLINT, 16, 10, true);
 		add(FLINT, 8, 5, true);
@@ -19,7 +28,7 @@ public class BazaarTrades {
 		add(VERDANT_FROGLIGHT, 8, 5, true);
 		add(PEARLESCENT_FROGLIGHT, 16, 10, true);
 		add(PEARLESCENT_FROGLIGHT, 8, 5, true);
-		add(ELYTRA, 1, 48, false);
+		add(ELYTRA, 1, 64, false);
 		add(TRIDENT, 1, 64, false);
 		add(OMINOUS_TRIAL_KEY, 1, 32, false);
 		add(TRIAL_KEY, 1, 20, false);

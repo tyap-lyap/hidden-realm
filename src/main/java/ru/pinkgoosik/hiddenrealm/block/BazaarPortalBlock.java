@@ -35,7 +35,7 @@ public class BazaarPortalBlock extends Block {
 					player.setPortalCooldown(300);
 				}
 				else {
-					player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), -2.5, 107.5, -15.5, Set.of(), 45, 0);
+					player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), -11.5, 104.5, 6.5, Set.of(), 180, 0);
 				}
 
 			}
