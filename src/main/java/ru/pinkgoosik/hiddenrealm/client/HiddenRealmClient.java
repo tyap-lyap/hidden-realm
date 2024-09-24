@@ -47,12 +47,8 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_CREEPER, MoonblessedCreeperRenderer::new);
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_ZOMBIE, MoonblessedZombieRenderer::new);
-
-		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_CREEPER_LAYER, MoonblessedCreeperModel::getTexturedModelData);
-
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_SKELETON, (context) -> new BipedEntityRenderer(context, new SkeletonEntityModel(context.getPart(MOONBLESSED_SKELETON_LAYER)), 0.5f) {
 			@Override
 			public Identifier getTexture(Entity entity) {
@@ -72,6 +68,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 		EntityRendererRegistry.register(HiddenRealmEntities.FIRE_TRAIL, (context) -> new EmptyEntityRenderer<>(context) {});
 		EntityRendererRegistry.register(HiddenRealmEntities.SPORE, (context) -> new EmptyEntityRenderer<>(context) {});
 
+		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_CREEPER_LAYER, MoonblessedCreeperModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SHOPKEEPER_LAYER, ShopkeeperModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_ZOMBIE_LAYER, MoonblessedZombieModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(MOONBLESSED_SKELETON_LAYER, SkeletonEntityModel::getTexturedModelData);

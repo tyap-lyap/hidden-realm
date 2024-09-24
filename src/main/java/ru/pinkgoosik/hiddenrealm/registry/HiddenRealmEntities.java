@@ -56,7 +56,6 @@ public class HiddenRealmEntities {
 
 	public static void init() {
 		FabricDefaultAttributeRegistry.register(SHOPKEEPER, PassiveEntity.createLivingAttributes().add(EntityAttributes.GENERIC_FOLLOW_RANGE, 16));
-
 		FabricDefaultAttributeRegistry.register(MOONBLESSED_CREEPER, MoonblessedCreeperEntity.createCreeperAttributes());
 		FabricDefaultAttributeRegistry.register(MOONBLESSED_SKELETON, MoonblessedZombieEntity.createZombieAttributes());
 		FabricDefaultAttributeRegistry.register(MOONBLESSED_ZOMBIE, MoonblessedZombieEntity.createZombieAttributes());

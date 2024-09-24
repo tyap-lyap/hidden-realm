@@ -101,7 +101,6 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 				this.sporeExplode();
 			}
 		}
-
 		super.tick();
 	}
 

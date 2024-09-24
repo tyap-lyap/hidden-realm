@@ -22,8 +22,6 @@ public class HiddenRealmMod implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-
-
 		HiddenRealmCommands.init();
 		HiddenRealmEvents.init();
 		HiddenRealmItems.init();

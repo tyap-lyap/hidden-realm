@@ -49,7 +49,6 @@ public class LunarCoinEntity extends Entity {
 				this.move(MovementType.SELF, this.getVelocity());
 				float f = 0.98F;
 
-
 				this.setVelocity(this.getVelocity().multiply((double) f, 0.98, (double) f));
 				if (this.isOnGround()) {
 					Vec3d vec3d2 = this.getVelocity();

@@ -14,8 +14,6 @@ import ru.pinkgoosik.hiddenrealm.entity.MoonblessedCreeperEntity;
 public class MoonblessedCreeperRenderer extends MobEntityRenderer<MoonblessedCreeperEntity,MoonblessedCreeperModel>{
 	private static final Identifier TEXTURE = Identifier.of(HiddenRealmMod.MOD_ID,"textures/entity/moonblessed_creeper.png");
 
-
-
 	public MoonblessedCreeperRenderer(EntityRendererFactory.Context context) {
 		super(context, new MoonblessedCreeperModel(context.getPart(HiddenRealmClient.MOONBLESSED_CREEPER_LAYER)), 0.5F);
 	}
