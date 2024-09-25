@@ -43,7 +43,7 @@ public class HiddenRealmBlocks {
 	public static final Block SMOOTH_MOONSTONE_STAIRS = add("smooth_moonstone_stairs", new StairsBlock(SMOOTH_MOONSTONE.getDefaultState(), copy(Blocks.STONE_BRICKS)));
 	public static final Block SMOOTH_MOONSTONE_SLAB = add("smooth_moonstone_slab", new SlabBlock(copy(Blocks.STONE_BRICK_SLAB)));
 
-	public static final Block LUNAR_VINES = add("lunar_vines", new LunarVinesBlock(copy(Blocks.GRASS_BLOCK).sounds(BlockSoundGroup.VINE).pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block LUNAR_VINES = add("lunar_vines", new LunarVinesBlock(copy(Blocks.GRASS_BLOCK).sounds(BlockSoundGroup.VINE).noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block BOTTLE_WISP = add("bottle_wisp", new BottleWispBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block LUNAR_MUSHROOM = add("lunar_mushroom", new LunarMushroomBlock(copy(Blocks.BROWN_MUSHROOM).sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block BAZAAR_LAMP = add("bazaar_lamp", new BazaarLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));

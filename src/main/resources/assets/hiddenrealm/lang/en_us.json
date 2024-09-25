@@ -34,6 +34,17 @@
   "item.hiddenrealm.fire_boots": "Fire Boots",
   "item.hiddenrealm.experience_necklace": "Necklace Of Experience",
   "item.hiddenrealm.beheading_katana": "Beheading Katana",
+  "item.hiddenrealm.moonblessed_creeper_spawn_egg": "Moonblessed Creeper Spawn Egg",
+  "item.hiddenrealm.moonblessed_zombie_spawn_egg": "Moonblessed Zombie Spawn Egg",
+  "item.hiddenrealm.moonblessed_skeleton_spawn_egg": "Moonblessed Skeleton Spawn Egg",
+
+  "entity.hiddenrealm.moonblessed_creeper": "Moonblessed Creeper",
+  "entity.hiddenrealm.moonblessed_zombie": "Moonblessed Zombie",
+  "entity.hiddenrealm.moonblessed_skeleton": "Moonblessed Skeleton",
+  "entity.hiddenrealm.shopkeeper": "Shopkeeper",
+  "entity.hiddenrealm.spore": "Spores",
+  "entity.hiddenrealm.fire_trail": "Fire Trail",
+  "entity.hiddenrealm.lunar_coin": "Lunar Coin",
 
   "effect.hiddenrealm.guarding_lamp_curse": "Guarding Lamp Curse"
 }

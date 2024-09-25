@@ -33,6 +33,7 @@ import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedCreeperRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedZombieRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
+import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
@@ -101,20 +102,22 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 				int price = entity.price;
 
+
+				context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (30 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 7 ,1, 15, 15);
+				context.drawTextWithShadow(client.textRenderer, price + " -> ", (width / 2) - (12 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 11, 1622517);
+				context.drawItem(entity.sellingItem, (width / 2) + 5, (height / 2) + 5);
+
+				if(entity.sellingItem.getCount() > 1) {
+					context.drawTextWithShadow(client.textRenderer, String.valueOf(entity.sellingItem.getCount()), (width / 2) + 22, (height / 2) + 11, 1622517);
+				}
+
+
 				if(price > ((LunarCoinExtension)client.player).getLunarCoin()) {
 					var text = Text.translatable("message.hiddenrealm.not_enough_coins");
-					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2), (height / 2) + 10, 16076354);
-				}
-				else {
-					context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (30 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 7 ,1, 15, 15);
-					context.drawTextWithShadow(client.textRenderer, price + " -> ", (width / 2) - (12 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 11, 1622517);
-					context.drawItem(entity.sellingItem, (width / 2) + 5, (height / 2) + 5);
-
-					if(entity.sellingItem.getCount() > 1) {
-						context.drawTextWithShadow(client.textRenderer, String.valueOf(entity.sellingItem.getCount()), (width / 2) + 22, (height / 2) + 11, 1622517);
-					}
+					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2), (height / 2) + 22, 16076354);
 				}
 
+				HiddenRealmEvents.showLunarTimer = 50;
 				context.getMatrices().pop();
 			}
 			if(block.getBlock() instanceof RefresherBlock) {
@@ -123,17 +126,17 @@ public class HiddenRealmClient implements ClientModInitializer {
 				var width = context.getScaledWindowWidth();
 				int price = 2;
 
-				if(((LunarCoinExtension)client.player).getLunarCoin() >= price) {
-					var text = Text.literal(Language.getInstance().get("message.hiddenrealm.refresh_price").replace("%price%", String.valueOf(price)));
 
-					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2) + 10, (height / 2) + 10, 1622517);
-					context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (8 + (client.textRenderer.getWidth(text) / 2)), (height / 2) + 5 ,1, 15, 15);
-				}
-				else {
-					var text = Text.translatable("message.hiddenrealm.not_enough_coins");
-					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2), (height / 2) + 10, 16076354);
-				}
+				var text = Text.literal(Language.getInstance().get("message.hiddenrealm.refresh_price").replace("%price%", String.valueOf(price)));
 
+				context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2) + 10, (height / 2) + 10, 1622517);
+				context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (8 + (client.textRenderer.getWidth(text) / 2)), (height / 2) + 5 ,1, 15, 15);
+
+				if(price > ((LunarCoinExtension)client.player).getLunarCoin()) {
+					var noMoneyText = Text.translatable("message.hiddenrealm.not_enough_coins");
+					context.drawTextWithShadow(client.textRenderer, noMoneyText, (width / 2) - (client.textRenderer.getWidth(noMoneyText) / 2), (height / 2) + 22, 16076354);
+				}
+				HiddenRealmEvents.showLunarTimer = 50;
 				context.getMatrices().pop();
 			}
 		}

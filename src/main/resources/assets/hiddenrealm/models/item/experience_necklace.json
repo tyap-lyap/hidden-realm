@@ -1,7 +1,8 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "hiddenrealm:item/experience_necklace",
-		"particle": "#0"
+		"particle": "hiddenrealm:item/experience_necklace"
 	},
 	"elements": [
 		{
@@ -127,7 +128,8 @@
 			"translation": [0, -14, -3]
 		},
 		"ground": {
-			"translation": [0, -14.5, 0]
+			"translation": [0, -3.5, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
 			"rotation": [30, 130, 0],

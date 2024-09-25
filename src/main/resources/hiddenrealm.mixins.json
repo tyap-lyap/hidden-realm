@@ -5,7 +5,11 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BowAttackGoalMixin",
+    "ChorusFruitItemMixin",
+    "EnderPearlEntityMixin",
+    "EnderPearlItemMixin",
     "ExperienceOrbMixin",
+    "ItemEntityMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerMixin",
@@ -13,6 +17,7 @@
   ],
   "client": [
     "BipedEntityModelMixin",
+    "CreeperEntityModelMixin",
     "InGameHudMixin"
   ],
   "injectors": {
