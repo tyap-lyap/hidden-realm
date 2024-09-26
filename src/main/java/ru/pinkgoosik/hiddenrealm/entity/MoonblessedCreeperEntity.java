@@ -23,7 +23,7 @@ import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
 
 import java.util.EnumSet;
 
-public class MoonblessedCreeperEntity extends HostileEntity implements MoonblessedEntity{
+public class MoonblessedCreeperEntity extends MoonblessedEntity{
 
 	private static final TrackedData<Integer> FUSE_SPEED = DataTracker.registerData(MoonblessedCreeperEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private int lastFuseTime;
@@ -39,7 +39,6 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 		this.goalSelector.add(1, new SwimGoal(this));
 		this.goalSelector.add(2, new SporeAttackGoal(this));
 		this.goalSelector.add(1, new FleeEntityGoal(this,PlayerEntity.class,10,1,1.3));
-		//this.goalSelector.add(4, new FollowZombieGoal(this,1.2F));
 		this.goalSelector.add(5, new WanderAroundFarGoal(this, 0.8));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 10.0F));
 		this.goalSelector.add(6, new LookAroundGoal(this));
@@ -59,6 +58,16 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 		this.attackCooldown = attackCooldown;
 	}
 
+	@Override
+	public int minDropCount() {
+		return 8;
+	}
+
+	@Override
+	public int maxDropCount() {
+		return 12;
+	}
+
 	protected void initDataTracker(DataTracker.Builder builder) {
 		super.initDataTracker(builder);
 		builder.add(FUSE_SPEED, -1);
@@ -75,10 +84,7 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 		if (nbt.contains("Fuse", 99)) {
 			this.fuseTime = nbt.getShort("Fuse");
 		}
-		if (nbt.contains("AttackCooldown", 99)) {
 			this.attackCooldown = nbt.getInt("AttackCooldown");
-		}
-
 	}
 
 	public void tick() {
@@ -104,20 +110,9 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 		super.tick();
 	}
 
-	@Override
-	public void onDeath(DamageSource damageSource) {
-		super.onDeath(damageSource);
-
-		for(int i = 0; i < this.getRandom().nextBetween(1,3) ;++i){
-			LunarCoinEntity lunarCoin = new LunarCoinEntity(HiddenRealmEntities.LUNAR_COIN,this.getWorld());
-			lunarCoin.setPosition(this.getPos().add(this.getWorld().random.nextDouble(),this.getWorld().random.nextDouble(),this.getWorld().random.nextDouble()));
-
-			this.getWorld().spawnEntity(lunarCoin);
-		}
-	}
-
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.ENTITY_CREEPER_HURT;
+
 	}
 
 	protected SoundEvent getDeathSound() {
@@ -156,6 +151,7 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 				moonblessedZombie.setPosition(this.getPos());
 				if(this.getTarget() != null ){
 					moonblessedZombie.setTarget(this.getTarget());
+					moonblessedZombie.setDisableDropCoin(true);
 				}
 				this.getWorld().spawnEntity(moonblessedZombie);
 			}
@@ -167,6 +163,7 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 				}
 				skeletonEntity.setPosition(this.getPos());
 				skeletonEntity.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+				skeletonEntity.setDisableDropCoin(true);
 				this.getWorld().spawnEntity(skeletonEntity);
 			}
 		}
@@ -215,63 +212,4 @@ public class MoonblessedCreeperEntity extends HostileEntity implements Moonbless
 			}
 		}
 	}
-
-/*	public class FollowZombieGoal extends Goal {
-		private final MoonblessedCreeperEntity moonblessedCreeper;
-		@Nullable
-		private MoonblessedZombieEntity moonblessedZombie;
-		private final double speed;
-		private int delay;
-
-		public FollowZombieGoal(MoonblessedCreeperEntity moonblessedCreeper, double speed) {
-			this.moonblessedCreeper = moonblessedCreeper;
-			this.speed = speed;
-		}
-
-		public boolean canStart() {
-				var list = this.moonblessedCreeper.getWorld().getNonSpectatingEntities(MoonblessedZombieEntity.class, this.moonblessedCreeper.getBoundingBox().expand(8.0, 4.0, 8.0));
-				double d = Double.MAX_VALUE;
-			if (!list.isEmpty()) {
-				for (MoonblessedZombieEntity moonblessedZombie : list) {
-
-					double e = this.moonblessedCreeper.squaredDistanceTo(moonblessedZombie);
-					if (!(e > d)) {
-						d = e;
-					}
-
-					if (d < 9.0) {
-						return false;
-					} else {
-						this.moonblessedZombie = moonblessedZombie;
-						return true;
-					}
-				}
-			}
-		return  false;
-		}
-
-		public boolean shouldContinue() {
-			if (!this.moonblessedZombie.isAlive()) {
-				return false;
-			} else {
-				double d = this.moonblessedCreeper.squaredDistanceTo(this.moonblessedZombie);
-				return !(d < 9.0) && !(d > 256.0);
-			}
-		}
-
-		public void start() {
-			this.delay = 0;
-		}
-
-		public void stop() {
-			this.moonblessedZombie = null;
-		}
-
-		public void tick() {
-			if (--this.delay <= 0) {
-				this.delay = this.getTickCount(10);
-				this.moonblessedCreeper.getNavigation().startMovingTo(this.moonblessedZombie, this.speed);
-			}
-		}
-	}*/
 }

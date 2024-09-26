@@ -13,7 +13,8 @@
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PlayerMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "SpawnHelperMixin"
   ],
   "client": [
     "BipedEntityModelMixin",

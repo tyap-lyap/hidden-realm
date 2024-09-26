@@ -4,7 +4,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.RangedAttackMob;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
@@ -18,7 +17,7 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class MoonblessedSkeletonEntity extends HostileEntity implements RangedAttackMob,MoonblessedEntity {
+public class MoonblessedSkeletonEntity extends MoonblessedEntity implements RangedAttackMob {
 
 
 
@@ -56,11 +55,7 @@ public class MoonblessedSkeletonEntity extends HostileEntity implements RangedAt
 	}
 
 	protected void initGoals() {
-		int speed = 0;
-		if(!isSnipe()) {
-			speed = 1;
-			this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
-		}
+		this.goalSelector.add(5, new WanderAroundFarGoal(this, !isSnipe() ? 1: 0));
 		this.goalSelector.add(4, new BowAttackGoal(this, speed, 20, 15.0F));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.add(6, new LookAroundGoal(this));

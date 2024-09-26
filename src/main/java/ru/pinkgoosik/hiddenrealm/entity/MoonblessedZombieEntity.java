@@ -11,7 +11,7 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 
-public class MoonblessedZombieEntity extends HostileEntity implements MoonblessedEntity{
+public class MoonblessedZombieEntity extends MoonblessedEntity{
 	public MoonblessedZombieEntity(EntityType<? extends HostileEntity> entityType, World world) {
 		super(entityType, world);
 
