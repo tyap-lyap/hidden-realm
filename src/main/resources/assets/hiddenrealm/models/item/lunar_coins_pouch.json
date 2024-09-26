@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hiddenrealm:item/lunar_coins_pouch"
+  }
+}

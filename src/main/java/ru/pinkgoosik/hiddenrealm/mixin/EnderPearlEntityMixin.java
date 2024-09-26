@@ -20,7 +20,7 @@ abstract class EnderPearlEntityMixin extends ThrownItemEntity {
 
 	@Inject(method = "tick", at = @At(value = "TAIL"))
 	void tick(CallbackInfo ci) {
-		if(getOwner() instanceof ServerPlayerEntity player && player.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) {
+		if(getOwner() instanceof ServerPlayerEntity player && !player.isCreative() &&  player.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) {
 			this.discard();
 		}
 	}

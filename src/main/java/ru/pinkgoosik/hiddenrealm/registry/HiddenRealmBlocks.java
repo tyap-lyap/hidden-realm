@@ -22,7 +22,7 @@ public class HiddenRealmBlocks {
 	public static final Map<Identifier, Block> BLOCKS = new LinkedHashMap<>();
 
 	public static final Block BAZAAR_PORTAL_PAD = add("bazaar_portal_pad", new BazaarPortalPadBlock(copy(Blocks.OBSIDIAN).ticksRandomly().dropsNothing()));
-	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.BEDROCK).replaceable().dropsNothing()));
+	public static final Block BAZAAR_PORTAL = add("bazaar_portal", new BazaarPortalBlock(copy(Blocks.OBSIDIAN).replaceable().dropsNothing()));
 	public static final Block TRADING_PEDESTAL = add("trading_pedestal", new TradingPedestalBlock(copy(Blocks.OBSIDIAN).nonOpaque()));
 	public static final Block REFRESHER = add("refresher", new RefresherBlock(copy(Blocks.STONE).nonOpaque()));
 	public static final Block LUNAR_FLAG = add("lunar_flag", new LunarFlagBlock(copy(Blocks.OAK_PLANKS).nonOpaque()));
@@ -43,11 +43,11 @@ public class HiddenRealmBlocks {
 	public static final Block SMOOTH_MOONSTONE_STAIRS = add("smooth_moonstone_stairs", new StairsBlock(SMOOTH_MOONSTONE.getDefaultState(), copy(Blocks.STONE_BRICKS)));
 	public static final Block SMOOTH_MOONSTONE_SLAB = add("smooth_moonstone_slab", new SlabBlock(copy(Blocks.STONE_BRICK_SLAB)));
 
-	public static final Block LUNAR_VINES = add("lunar_vines", new LunarVinesBlock(copy(Blocks.GRASS_BLOCK).sounds(BlockSoundGroup.VINE).noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block LUNAR_VINES = add("lunar_vines", new LunarVinesBlock(copy(Blocks.GRASS_BLOCK).sounds(BlockSoundGroup.VINE).breakInstantly().noCollision().nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block BOTTLE_WISP = add("bottle_wisp", new BottleWispBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block LUNAR_MUSHROOM = add("lunar_mushroom", new LunarMushroomBlock(copy(Blocks.BROWN_MUSHROOM).sounds(BlockSoundGroup.FUNGUS).pistonBehavior(PistonBehavior.DESTROY)));
 	public static final Block BAZAAR_LAMP = add("bazaar_lamp", new BazaarLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> 15).pistonBehavior(PistonBehavior.DESTROY)));
-	public static final Block GUARDING_LAMP = add("guarding_lamp", new GuardingLampBlock(copy(Blocks.GLASS).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> state.get(GuardingLampBlock.ENABLED) ? 15 : 8).pistonBehavior(PistonBehavior.DESTROY)));
+	public static final Block GUARDING_LAMP = add("guarding_lamp", new GuardingLampBlock(copy(Blocks.STONE).sounds(BlockSoundGroup.LANTERN).nonOpaque().luminance(state -> state.get(GuardingLampBlock.ENABLED) ? 15 : 8).pistonBehavior(PistonBehavior.DESTROY)));
 
 	public static void init() {
 		ITEMS.forEach((id, item) -> Registry.register(Registries.ITEM, id, item));

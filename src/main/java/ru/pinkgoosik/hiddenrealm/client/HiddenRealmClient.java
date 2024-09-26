@@ -2,6 +2,7 @@ package ru.pinkgoosik.hiddenrealm.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -46,6 +47,9 @@ public class HiddenRealmClient implements ClientModInitializer {
 	public static final EntityModelLayer MOONBLESSED_CREEPER_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_creeper"), "main");
 	public static final EntityModelLayer MOONBLESSED_SKELETON_LAYER = new EntityModelLayer(HiddenRealmMod.id("moonblessed_skeleton"), "main");
 
+	public static int cachedCoins = 0;
+	public static int showLunarTimer;
+
 	@Override
 	public void onInitializeClient() {
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_CREEPER, MoonblessedCreeperRenderer::new);
@@ -78,6 +82,19 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 		HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
 			onHudRender(drawContext);
+		});
+
+		ClientTickEvents.START_WORLD_TICK.register((world) -> {
+			if(MinecraftClient.getInstance().player instanceof LunarCoinExtension extension) {
+				if (cachedCoins != extension.getLunarCoin()) {
+					cachedCoins = extension.getLunarCoin();
+					showLunarTimer = 200;
+				}
+				if(showLunarTimer != 0) {
+					showLunarTimer--;
+				}
+			}
+
 		});
 
 		BlockRenderLayerMap.INSTANCE.putBlock(HiddenRealmBlocks.BOTTLE_WISP, RenderLayer.getTranslucent());
@@ -117,7 +134,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 					context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2), (height / 2) + 22, 16076354);
 				}
 
-				HiddenRealmEvents.showLunarTimer = 50;
+				HiddenRealmClient.showLunarTimer = 50;
 				context.getMatrices().pop();
 			}
 			if(block.getBlock() instanceof RefresherBlock) {
@@ -136,7 +153,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 					var noMoneyText = Text.translatable("message.hiddenrealm.not_enough_coins");
 					context.drawTextWithShadow(client.textRenderer, noMoneyText, (width / 2) - (client.textRenderer.getWidth(noMoneyText) / 2), (height / 2) + 22, 16076354);
 				}
-				HiddenRealmEvents.showLunarTimer = 50;
+				HiddenRealmClient.showLunarTimer = 50;
 				context.getMatrices().pop();
 			}
 		}

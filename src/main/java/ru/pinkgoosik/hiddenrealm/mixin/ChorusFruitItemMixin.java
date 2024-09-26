@@ -1,6 +1,7 @@
 package ru.pinkgoosik.hiddenrealm.mixin;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ChorusFruitItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,6 @@ abstract class ChorusFruitItemMixin extends Item {
 
 	@Inject(method = "finishUsing", at = @At("HEAD"), cancellable = true)
 	void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
-		if(user.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) cir.setReturnValue(super.finishUsing(stack, world, user));
+		if(user instanceof PlayerEntity player && !player.isCreative() && user.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) cir.setReturnValue(super.finishUsing(stack, world, user));
 	}
 }

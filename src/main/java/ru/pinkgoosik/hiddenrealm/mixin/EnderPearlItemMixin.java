@@ -22,6 +22,6 @@ abstract class EnderPearlItemMixin extends Item {
 
 	@Inject(method = "use", at = @At("HEAD"), cancellable = true)
 	void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
-		if(user.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) cir.setReturnValue(super.use(world, user, hand));
+		if(!user.isCreative() && user.hasStatusEffect(HiddenRealmEffects.GUARDING_LAMP_CURSE)) cir.setReturnValue(super.use(world, user, hand));
 	}
 }

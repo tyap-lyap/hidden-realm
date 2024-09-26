@@ -2,9 +2,10 @@
   "modmenu.descriptionTranslation.hiddenrealm": "This mod adds new Hidden Realm: Silent Bazaar. CurseForge Modjam participant",
   "itemGroup.hiddenrealm.items": "Hidden Realm",
 
-  "message.hiddenrealm.silent_bazaar_death": "Your body and your soul violently left the Hidden Realm.",
+  "message.hiddenrealm.silent_bazaar_death": "Your body and soul violently left the Hidden Realm.",
   "message.hiddenrealm.not_enough_coins": "Not enough coins",
   "message.hiddenrealm.refresh_price": "%price% Coins to refresh trades",
+  "message.hiddenrealm.lunar_coins_pouch": "+ %amount% Lunar Coins",
 
   "block.hiddenrealm.bazaar_portal": "Bazaar Portal",
   "block.hiddenrealm.bazaar_portal_pad": "Bazaar Portal Pad",
@@ -31,6 +32,7 @@
   "block.hiddenrealm.guarding_lamp": "Guarding Lamp",
 
   "item.hiddenrealm.lunar_coin": "Lunar Coin",
+  "item.hiddenrealm.lunar_coins_pouch": "Pouch of Lunar Coins",
   "item.hiddenrealm.fire_boots": "Fire Boots",
   "item.hiddenrealm.experience_necklace": "Necklace Of Experience",
   "item.hiddenrealm.beheading_katana": "Beheading Katana",
@@ -46,5 +48,7 @@
   "entity.hiddenrealm.fire_trail": "Fire Trail",
   "entity.hiddenrealm.lunar_coin": "Lunar Coin",
 
-  "effect.hiddenrealm.guarding_lamp_curse": "Guarding Lamp Curse"
+  "effect.hiddenrealm.guarding_lamp_curse": "Guarding Lamp Curse",
+
+  "biome.hiddenrealm.silent_cave": "Silent Cave"
 }
