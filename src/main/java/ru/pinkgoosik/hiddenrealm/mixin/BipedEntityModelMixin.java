@@ -6,6 +6,7 @@ import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.ModelWithArms;
 import net.minecraft.client.render.entity.model.ModelWithHead;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -27,8 +28,8 @@ abstract class BipedEntityModelMixin<T extends LivingEntity> extends AnimalModel
 
 	@Inject(method = "setAngles(Lnet/minecraft/entity/LivingEntity;FFFFF)V", at = @At("HEAD"))
 	void setAngles(T livingEntity, float f, float g, float h, float i, float j, CallbackInfo ci) {
-		if(livingEntity instanceof LivingEntityExtension ex) {
-            head.visible = !ex.isBeheaded();
+		if(livingEntity instanceof LivingEntityExtension ex && !(livingEntity instanceof PlayerEntity)) {
+			head.visible = !ex.isBeheaded();
 			hat.visible = !ex.isBeheaded();
 		}
 	}
