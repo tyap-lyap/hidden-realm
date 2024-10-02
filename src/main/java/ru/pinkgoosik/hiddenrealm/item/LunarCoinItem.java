@@ -32,9 +32,12 @@ public class LunarCoinItem extends Item {
 	public ActionResult useOnBlock(ItemUsageContext context) {
 
 		if(context.getSide().equals(Direction.UP)) {
-			var coin = new LunarCoinEntity(HiddenRealmEntities.LUNAR_COIN, context.getWorld());
-			coin.refreshPositionAndAngles(context.getHitPos().getX(), context.getHitPos().getY(), context.getHitPos().getZ(), 0, 0);
-			context.getWorld().spawnEntity(coin);
+			if(!context.getWorld().isClient()) {
+				var coin = new LunarCoinEntity(HiddenRealmEntities.LUNAR_COIN, context.getWorld());
+				coin.refreshPositionAndAngles(context.getHitPos().getX(), context.getHitPos().getY(), context.getHitPos().getZ(), 0, 0);
+				context.getWorld().spawnEntity(coin);
+			}
+			return ActionResult.SUCCESS;
 		}
 
 		return super.useOnBlock(context);

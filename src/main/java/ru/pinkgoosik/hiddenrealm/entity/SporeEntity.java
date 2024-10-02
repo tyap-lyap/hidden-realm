@@ -50,10 +50,11 @@ public class SporeEntity extends Entity {
 			if (!list.isEmpty()) {
 				for (LivingEntity entity : list) {
 					if (entity instanceof MoonblessedEntity) {
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 0));
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 0));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 200, 0));
 					} else {
-						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 3));
+						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 2));
 						entity.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 200, 1));
 					}
 				}

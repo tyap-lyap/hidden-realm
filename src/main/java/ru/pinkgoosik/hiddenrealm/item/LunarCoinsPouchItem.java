@@ -20,7 +20,7 @@ public class LunarCoinsPouchItem extends Item {
 		ItemStack stack = user.getStackInHand(hand);
 		if(world.isClient()) return TypedActionResult.success(stack);
 
-		int amount = 5 + world.getRandom().nextInt(11);
+		int amount = 5 + world.getRandom().nextInt(6);
 		((LunarCoinExtension)user).addLunarCoin(amount);
 		var text = Text.literal(Language.getInstance().get("message.hiddenrealm.lunar_coins_pouch").replace("%amount%", String.valueOf(amount)));
 		user.sendMessage(text, true);
