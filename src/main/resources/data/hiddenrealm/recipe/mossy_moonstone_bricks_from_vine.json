@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "mossy_moonstone_bricks",
+  "ingredients": [
+    {
+      "item": "hiddenrealm:moonstone_bricks"
+    },
+    {
+      "item": "minecraft:vine"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "hiddenrealm:mossy_moonstone_bricks"
+  }
+}
