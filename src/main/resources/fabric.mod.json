@@ -3,7 +3,7 @@
   "id": "hiddenrealm",
   "version": "${version}",
   "name": "Hidden Realm",
-  "description": "This mod adds new Hidden Realm: Silent Bazaar. CurseForge Modjam participant",
+  "description": "This mod adds new hidden realm, visit bazaar and trade your lunar coins with items.",
   "authors": [ "PinkGoosik", "Theone_ss", "Spusik", "VioletSomik" ],
   "license": "ARR",
   "icon": "assets/hiddenrealm/icon.png",
@@ -18,7 +18,7 @@
     "fabricloader": "*",
     "fabric-api": "*",
     "trinkets": "*",
-    "minecraft": ">=1.21",
+    "minecraft": ">=1.21 <1.21.2",
     "java": ">=21"
   }
 }
