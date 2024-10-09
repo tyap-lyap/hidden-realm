@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": { "model": "hiddenrealm:block/lunar_vines" }
+    "tip=true": {
+      "model": "hiddenrealm:block/lunar_vines_tip"
+    },
+    "tip=false": {
+      "model": "hiddenrealm:block/lunar_vines"
+    }
   }
 }

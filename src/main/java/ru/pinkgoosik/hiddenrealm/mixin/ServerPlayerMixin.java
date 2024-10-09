@@ -3,11 +3,11 @@ package ru.pinkgoosik.hiddenrealm.mixin;
 import com.mojang.authlib.GameProfile;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,17 +39,25 @@ abstract class ServerPlayerMixin extends PlayerEntity implements PlayerExtension
 		}
 	}
 
+	public Vec3d lastPos = Vec3d.ZERO;
+
 	@Inject(method = "tick", at = @At("TAIL"))
 	void tick(CallbackInfo ci) {
 		var world = getServerWorld();
 		var trinkets = TrinketsApi.getTrinketComponent(this);
 
 		if(trinkets.isPresent()) {
-			if(trinkets.get().isEquipped(HiddenRealmItems.FIRE_BOOTS) && this.isOnGround() && world.getServer().getTicks() % 5 == 0) {
-				var trail = new FireTrailEntity(HiddenRealmEntities.FIRE_TRAIL, world);
-				trail.owner = this.getUuid();
-				trail.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
-				world.spawnEntity(trail);
+			int rate = 5;
+			if(lastPos == getPos()) rate = 20;
+
+			if(trinkets.get().isEquipped(HiddenRealmItems.FIRE_BOOTS) && world.getServer().getTicks() % rate == 0) {
+				if(this.isOnGround()) {
+					var trail = new FireTrailEntity(HiddenRealmEntities.FIRE_TRAIL, world);
+					trail.owner = this.getUuid();
+					trail.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), 0, 0);
+					world.spawnEntity(trail);
+				}
+				lastPos = getPos();
 			}
 		}
 	}
