@@ -3,6 +3,7 @@ package ru.pinkgoosik.hiddenrealm.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
@@ -30,15 +31,16 @@ import ru.pinkgoosik.hiddenrealm.blockentity.TradingPedestalBlockEntity;
 import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedZombieModel;
 import ru.pinkgoosik.hiddenrealm.client.model.ShopkeeperModel;
 import ru.pinkgoosik.hiddenrealm.client.model.MoonblessedCreeperModel;
+import ru.pinkgoosik.hiddenrealm.client.particle.BazaarPortalParticle;
 import ru.pinkgoosik.hiddenrealm.client.render.LunarCoinEntityRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedCreeperRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.MoonblessedZombieRenderer;
 import ru.pinkgoosik.hiddenrealm.client.render.TradingPedestalRenderer;
-import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
 import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmParticles;
 
 public class HiddenRealmClient implements ClientModInitializer {
 
@@ -52,6 +54,8 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		ParticleFactoryRegistry.getInstance().register(HiddenRealmParticles.BAZAAR_PORTAL, BazaarPortalParticle.Factory::new);
+
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_CREEPER, MoonblessedCreeperRenderer::new);
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_ZOMBIE, MoonblessedZombieRenderer::new);
 		EntityRendererRegistry.register(HiddenRealmEntities.MOONBLESSED_SKELETON, (context) -> new BipedEntityRenderer(context, new SkeletonEntityModel(context.getPart(MOONBLESSED_SKELETON_LAYER)), 0.5f) {
