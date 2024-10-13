@@ -30,11 +30,10 @@ public class BazaarPortalBlock extends Block {
 	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		if (entity instanceof ServerPlayerEntity player && entity.canUsePortals(false)) {
 			if (!player.hasPortalCooldown()) {
-				if(player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
-					((PlayerExtension)player).teleportToPrevPosition();
+				if (player.getWorld().getRegistryKey().getValue().equals(HiddenRealmMod.SILENT_BAZAAR.getValue())) {
+					((PlayerExtension) player).teleportToPrevPosition();
 					player.setPortalCooldown(300);
-				}
-				else {
+				} else {
 					player.teleport(player.getServer().getWorld(HiddenRealmMod.SILENT_BAZAAR), -11.5, 104.5, 6.5, Set.of(), 180, 0);
 				}
 
@@ -59,8 +58,12 @@ public class BazaarPortalBlock extends Block {
 
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		if (!world.isClient) {
+			return;
+		}
+
 		super.randomDisplayTick(state, world, pos, random);
-		if(random.nextFloat() > 0.5) {
+		if (random.nextFloat() > 0.5) {
 			double x = pos.getX() + random.nextDouble();
 			double y = pos.getY() + random.nextDouble();
 			double z = pos.getZ() + random.nextDouble();

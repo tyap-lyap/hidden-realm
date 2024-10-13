@@ -1,11 +1,10 @@
 package ru.pinkgoosik.hiddenrealm;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.slf4j.Logger;
@@ -13,7 +12,12 @@ import org.slf4j.LoggerFactory;
 import ru.pinkgoosik.hiddenrealm.command.HiddenRealmCommands;
 import ru.pinkgoosik.hiddenrealm.data.BazaarTrades;
 import ru.pinkgoosik.hiddenrealm.event.HiddenRealmEvents;
-import ru.pinkgoosik.hiddenrealm.registry.*;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlockEntities;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmBlocks;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEffects;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmEntities;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmItems;
+import ru.pinkgoosik.hiddenrealm.registry.HiddenRealmParticles;
 
 public class HiddenRealmMod implements ModInitializer {
 	public static final String MOD_ID = "hiddenrealm";
@@ -28,7 +32,9 @@ public class HiddenRealmMod implements ModInitializer {
 		HiddenRealmBlocks.init();
 		HiddenRealmEntities.init();
 		HiddenRealmBlockEntities.init();
-		HiddenRealmParticles.init();
+		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+			HiddenRealmParticles.init();
+		}
 		HiddenRealmEffects.init();
 		BazaarTrades.init();
 	}

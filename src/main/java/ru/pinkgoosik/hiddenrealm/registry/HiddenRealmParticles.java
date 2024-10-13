@@ -1,5 +1,7 @@
 package ru.pinkgoosik.hiddenrealm.registry;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.SimpleParticleType;
@@ -8,6 +10,7 @@ import net.minecraft.registry.Registry;
 import ru.pinkgoosik.hiddenrealm.HiddenRealmMod;
 import ru.pinkgoosik.hiddenrealm.client.particle.BazaarPortalParticle;
 
+@Environment(EnvType.CLIENT)
 public class HiddenRealmParticles {
 
 	public static final SimpleParticleType BAZAAR_PORTAL = add("bazaar_portal", BazaarPortalParticle.Factory::new);
