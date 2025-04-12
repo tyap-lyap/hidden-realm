@@ -3,9 +3,9 @@ package ru.pinkgoosik.hiddenrealm.item;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Language;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import ru.pinkgoosik.hiddenrealm.extension.LunarCoinExtension;
@@ -22,8 +22,9 @@ public class LunarCoinsPouchItem extends Item {
 
 		int amount = 5 + world.getRandom().nextInt(6);
 		((LunarCoinExtension)user).addLunarCoin(amount);
-		var text = Text.literal(Language.getInstance().get("message.hiddenrealm.lunar_coins_pouch").replace("%amount%", String.valueOf(amount)));
-		user.sendMessage(text, true);
+
+		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ITEM_BUNDLE_REMOVE_ONE, SoundCategory.PLAYERS, 1.0F, 1.0F, world.random.nextLong());
+		world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 0.1F, 2F, world.random.nextLong());
 
 		stack.decrementUnlessCreative(1, user);
 		return TypedActionResult.success(stack);

@@ -51,6 +51,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 	public static int cachedCoins = 0;
 	public static int showLunarTimer;
+	public static int coinsDifference = 0;
 
 	@Override
 	public void onInitializeClient() {
@@ -91,12 +92,14 @@ public class HiddenRealmClient implements ClientModInitializer {
 		ClientTickEvents.START_WORLD_TICK.register((world) -> {
 			if(MinecraftClient.getInstance().player instanceof LunarCoinExtension extension) {
 				if (cachedCoins != extension.getLunarCoin()) {
+					coinsDifference = extension.getLunarCoin() - cachedCoins;
 					cachedCoins = extension.getLunarCoin();
 					showLunarTimer = 200;
 				}
 				if(showLunarTimer != 0) {
 					showLunarTimer--;
 				}
+				else coinsDifference = 0;
 			}
 
 		});
