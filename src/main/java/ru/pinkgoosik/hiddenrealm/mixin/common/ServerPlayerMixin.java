@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.common;
 
 import com.mojang.authlib.GameProfile;
 import dev.emi.trinkets.api.TrinketsApi;

@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.client;
 
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.AnimalModel;

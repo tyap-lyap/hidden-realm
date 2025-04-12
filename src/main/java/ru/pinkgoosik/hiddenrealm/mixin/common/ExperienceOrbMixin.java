@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.common;
 
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.ExperienceOrbEntity;

@@ -4,22 +4,22 @@
   "package": "ru.pinkgoosik.hiddenrealm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "BowAttackGoalMixin",
-    "ChorusFruitItemMixin",
-    "EnderPearlEntityMixin",
-    "EnderPearlItemMixin",
-    "ExperienceOrbMixin",
-    "ItemEntityMixin",
-    "LivingEntityMixin",
-    "PlayerEntityMixin",
-    "PlayerMixin",
-    "ServerPlayerMixin",
-    "SpawnHelperMixin"
+    "common.BowAttackGoalMixin",
+    "common.ChorusFruitItemMixin",
+    "common.EnderPearlEntityMixin",
+    "common.EnderPearlItemMixin",
+    "common.ExperienceOrbMixin",
+    "common.ItemEntityMixin",
+    "common.LivingEntityMixin",
+    "common.PlayerEntityMixin",
+    "common.PlayerMixin",
+    "common.ServerPlayerMixin",
+    "common.SpawnHelperMixin"
   ],
   "client": [
-    "BipedEntityModelMixin",
-    "CreeperEntityModelMixin",
-    "InGameHudMixin"
+    "client.BipedEntityModelMixin",
+    "client.CreeperEntityModelMixin",
+    "client.InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

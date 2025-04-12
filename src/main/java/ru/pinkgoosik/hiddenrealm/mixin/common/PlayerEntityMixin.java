@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.common;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.common;
 
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;

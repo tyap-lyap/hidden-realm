@@ -1,4 +1,4 @@
-package ru.pinkgoosik.hiddenrealm.mixin;
+package ru.pinkgoosik.hiddenrealm.mixin.common;
 
 import com.llamalad7.mixinextras.injector.WrapWithCondition;
 import net.minecraft.entity.ai.control.MoveControl;
