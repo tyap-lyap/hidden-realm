@@ -44,7 +44,7 @@ public abstract class InGameHudMixin {
 			drawContext.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID, "left_coin_frame"), 20, 21, 15, 15);
 			drawContext.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID, "coin_frame"), 35, 21, widthFrame - 7, 15);
 			drawContext.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID, "right_coin_frame"), 20 + widthFrame - 7 + 15, 21, 15, 15);
-			drawContext.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID, "lunar_coin_ui"), 22, 20, 1, 15, 15);
+			drawContext.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID, "lunar_coin_ui"), 22, 20, 1, 16, 16);
 			drawContext.drawText(this.getTextRenderer(), coin, 39, 25, 1622517, true);
 
 			RenderSystem.disableBlend();
