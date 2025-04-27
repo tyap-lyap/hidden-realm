@@ -128,11 +128,11 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 
 				context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (30 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 7 ,1, 16, 16);
-				context.drawTextWithShadow(client.textRenderer, price + " -> ", (width / 2) - (12 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 11, 1622517);
+				context.drawTextWithShadow(client.textRenderer, price + " -> ", (width / 2) - (12 + client.textRenderer.getWidth(String.valueOf(price))), (height / 2) + 11, 6740991);
 				context.drawItem(entity.sellingItem, (width / 2) + 5, (height / 2) + 5);
 
 				if(entity.sellingItem.getCount() > 1) {
-					context.drawTextWithShadow(client.textRenderer, String.valueOf(entity.sellingItem.getCount()), (width / 2) + 22, (height / 2) + 11, 1622517);
+					context.drawTextWithShadow(client.textRenderer, String.valueOf(entity.sellingItem.getCount()), (width / 2) + 22, (height / 2) + 11, 6740991);
 				}
 
 
@@ -153,7 +153,7 @@ public class HiddenRealmClient implements ClientModInitializer {
 
 				var text = Text.literal(Language.getInstance().get("message.hiddenrealm.refresh_price").replace("%price%", String.valueOf(price)));
 
-				context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2) + 10, (height / 2) + 10, 1622517);
+				context.drawTextWithShadow(client.textRenderer, text, (width / 2) - (client.textRenderer.getWidth(text) / 2) + 10, (height / 2) + 10, 6740991);
 				context.drawGuiTexture(Identifier.of(HiddenRealmMod.MOD_ID,"lunar_coin_ui"), (width / 2) - (8 + (client.textRenderer.getWidth(text) / 2)), (height / 2) + 5 ,1, 15, 15);
 
 				if(price > ((LunarCoinExtension)client.player).getLunarCoin()) {

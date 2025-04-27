@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "hiddenrealm:block/mossy_moonstone_bricks_1"
+    "all": "hiddenrealm:block/mossy_moonstone_bricks"
   }
 }

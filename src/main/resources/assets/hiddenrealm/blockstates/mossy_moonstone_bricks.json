@@ -1,12 +1,5 @@
 {
   "variants": {
-    "": [
-      {
-        "model": "hiddenrealm:block/mossy_moonstone_bricks_0"
-      },
-      {
-        "model": "hiddenrealm:block/mossy_moonstone_bricks_1"
-      }
-    ]
+    "": { "model": "hiddenrealm:block/mossy_moonstone_bricks" }
   }
 }

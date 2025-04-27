@@ -35,7 +35,7 @@ public class HiddenRealmItems {
 			HiddenRealmItems.ITEMS.forEach((id, item) -> entries.add(item.getDefaultStack()));
 			HiddenRealmBlocks.ITEMS.forEach((id, item) -> entries.add(item.getDefaultStack()));
 		})
-		.icon(HiddenRealmBlocks.BAZAAR_PORTAL.asItem()::getDefaultStack).build();
+		.icon(BEHEADING_KATANA::getDefaultStack).build();
 
 	public static void init() {
 		Registry.register(Registries.ITEM_GROUP, HiddenRealmMod.id("items"), ITEM_GROUP);
