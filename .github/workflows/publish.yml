@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Validate gradle wrapper
-        uses: gradle/wrapper-validation-action@v2
+        uses: gradle/actions/wrapper-validation@v3
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v4
         with:
@@ -40,7 +40,8 @@ jobs:
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
 
           files: |
-            build/libs/${{ steps.props.outputs.archives_base_name }}-${{ steps.props.outputs.mod_version }}.jar
+            build/libs/${{ steps.props.outputs.archives_base_name }}-${{ github.event.release.tag_name }}.jar
+            build/libs/${{ steps.props.outputs.archives_base_name }}-${{ github.event.release.tag_name }}-sources.jar
 
           name: ${{ github.event.release.tag_name }}
           version: ${{ github.event.release.tag_name }}

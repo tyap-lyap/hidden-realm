@@ -1,3 +1,6 @@
 {
-  "parent": "hiddenrealm:block/lunar_mushroom_0"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "hiddenrealm:item/lunar_mushroom"
+  }
 }
